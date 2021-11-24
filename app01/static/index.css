@@ -33,3 +33,13 @@ html,body{
     height: 180px;
     transform: rotate(-90deg);
 }
+.content-left > .btn{
+    position: absolute;
+    top: 72px;
+}
+.content-left > .btn >.btn-chirld{
+    height: 50px;
+    width: 174px;
+    border: white solid 2px;
+    box-shadow: white;
+}
