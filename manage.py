@@ -22,4 +22,6 @@ def main():
 if __name__ == '__main__':
     Runserver.default_addr = '0.0.0.0'  # 修改默认地址
     Runserver.default_port = '3737'  # 修改默认端口
+    # Runserver.default_addr = '127.0.0.1'  # 修改默认地址
+    # Runserver.default_port = '3737'  # 修改默认端口
     main()
