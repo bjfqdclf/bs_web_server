@@ -35,11 +35,20 @@ html,body{
 }
 .content-left > .btn{
     position: absolute;
+    left: 3px;
     top: 72px;
 }
 .content-left > .btn >.btn-chirld{
     height: 50px;
     width: 174px;
-    border: white solid 2px;
-    box-shadow: white;
+    margin-top: 1px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    background-color: #075486;
+    box-shadow: 1px 1px;
+    backdrop-filter: blur(10px);
+}
+.content-left > .btn >.btn-chirld > a{
+
 }
