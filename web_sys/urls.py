@@ -21,4 +21,4 @@ urlpatterns = [
                   # 系统页面
                   path('', views.index),
                   path('test/', views.test),
-              ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+              ]
