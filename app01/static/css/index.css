@@ -1,0 +1,79 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+html, body {
+    height: 100%;
+    background-image: url("../img/登录背景.png");
+    /*background-color: aqua;*/
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.content-left {
+    top: 0;
+    width: 180px;
+    height: 100%;
+    left: -1px;
+    background-color: #075486;
+    position: relative;
+    display: inline-block;
+}
+
+.content-left > .top-logo {
+    width: 70px;
+    height: 70px;
+    position: absolute;
+    left: 55px;
+}
+
+.content-left > .big-logo {
+    left: -280px;
+    top: 410px;
+    position: absolute;
+}
+
+.content-left > .big-logo > img {
+    width: auto;
+    height: 182px;
+    transform: rotate(-90deg);
+}
+
+.content-left > .btn {
+    position: absolute;
+    left: 3px;
+    top: 72px;
+}
+
+.content-left > .btn > .btn-chirld {
+    height: 70px;
+    width: 174px;
+    margin-top: 1px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px;
+    background-color: #075480;
+    box-shadow: 1px 1px;
+    backdrop-filter: blur(10px);
+}
+
+.content-left > .btn > .btn-chirld > a {
+    left: 20px;
+    top: 20px;
+    color: #C8DFF4;
+    font-size: 30px;
+    margin-top: 15px;
+    text-decoration: none;
+    text-align: center;
+}
+
+.login-card {
+    background-color: rgba(234, 243, 255, .4);
+    display: inline-block;
+    left: 500px;
+    width: 450px;
+    height: 550px;
+    border-radius: 25px;
+    position: relative;
+}
