@@ -13,6 +13,7 @@ class ClassInfo(models.Model):
 class UserInfo(AbstractUser):
     code = models.IntegerField()
     name = models.CharField(max_length=32)
+    user_type = models.IntegerField()  # 1 管理员    2 老师    3 学生
     phone_number = models.IntegerField(null=True)
 
     # 外键

@@ -11,6 +11,7 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 from pathlib import Path
 import os
+from conf_obtion import sys_config
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -47,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'app01.customize_middleware.auth_middleware.AuthMiddleware',
 ]
 
 ROOT_URLCONF = 'web_sys.urls'
@@ -70,16 +72,14 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'web_sys.wsgi.application'
 
-
-
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'school_sys_db',
-        'USER': 'lah',
-        'PASSWORD': 'L000307h',
-        'HOST': '172.17.0.16',
-        'PORT': 3306
+        'ENGINE': sys_config.db_engine,
+        'NAME': sys_config.db_name,
+        'USER': sys_config.db_user,
+        'PASSWORD': sys_config.db_password,
+        'HOST': sys_config.db_addr,
+        'PORT': sys_config.db_port
     }
 }
 
@@ -105,7 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'zh-hans'
 
 TIME_ZONE = 'Asia/Shanghai'
 
@@ -127,3 +127,11 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "app01.UserInfo"
+
+LOGIN_URL ="/login/"
+
+WHITE_LIST = [
+    '/',
+    '/login/',
+    '/logout/',
+]
