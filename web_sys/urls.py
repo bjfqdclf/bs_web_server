@@ -22,4 +22,5 @@ urlpatterns = [
     path('login/', public_views.my_login),
     # path('create_user/', views.create_user),
     path('test/', public_views.test),
+    path('test2/', public_views.test2),
 ]

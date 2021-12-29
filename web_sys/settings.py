@@ -134,4 +134,5 @@ WHITE_LIST = [
     '/',
     '/login/',
     '/logout/',
+    '/favicon.ico'
 ]

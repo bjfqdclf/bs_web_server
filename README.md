@@ -5,7 +5,7 @@
 - templates
   - static 静态文件
 - conf_obion.py 读取配置文件
-- web_sys.conf 配置文件:::::
+- web_sys.conf 配置文件
 
 
 
