@@ -5,14 +5,14 @@ from django.contrib.auth.models import AbstractUser
 class ClassInfo(models.Model):
     """班级"""
     uid = models.AutoField(primary_key=True)
-    code = models.IntegerField()
-    year = models.IntegerField()
-    name = models.CharField(max_length=32, null=True)
+    code = models.IntegerField()  # 班级代码（1-999）
+    year = models.IntegerField()  # 创建年份（2021）
+    name = models.CharField(max_length=32, null=True)  # 名称
 
 
 class UserInfo(AbstractUser):
-    code = models.IntegerField()
-    name = models.CharField(max_length=32)
+    code = models.IntegerField()  # 工号/学号(2021001001)
+    name = models.CharField(max_length=32)  # 姓名
     user_type = models.IntegerField()  # 1 管理员    2 老师    3 学生
     phone_number = models.IntegerField(null=True)
 

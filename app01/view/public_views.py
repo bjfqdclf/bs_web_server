@@ -25,7 +25,9 @@ def create_user(request):
 
 
 def test(request):
-    return HttpResponse('ok')
+    from app01.interface.admin_interface.user_operation import students_code_generate
+    code = students_code_generate(1, 1)
+    return HttpResponse(code) if code else HttpResponse('false')
 
 
 def test2(request):
