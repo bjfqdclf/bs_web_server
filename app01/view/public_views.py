@@ -1,6 +1,4 @@
 from django.shortcuts import render, HttpResponse, redirect
-from django.contrib.auth.decorators import login_required
-from app01.admin_interface import user_operation
 from django.contrib import auth
 
 
@@ -11,6 +9,7 @@ def my_login(request):
         user = auth.authenticate(request, username=username, password=pwd)
         if user:
             auth.login(request, user)
+            request.session.set_expiry(129600)  # 3天
             next_url = request.GET.get('next_path', '/test/')
             return redirect(next_url)
         else:

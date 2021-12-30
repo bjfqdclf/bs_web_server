@@ -12,9 +12,9 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 from pathlib import Path
 import os
 from conf_obtion import sys_config
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
@@ -26,7 +26,6 @@ SECRET_KEY = 'django-insecure-7-x11vo61r_c-l$w2le38zgs(d(x4=r062&*8h_a^4btj=4gsp
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
-
 
 # Application definition
 
@@ -49,6 +48,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'app01.customize_middleware.auth_middleware.AuthMiddleware',
+    'app01.customize_middleware.role_middleware.RoleMiddleware',
 ]
 
 ROOT_URLCONF = 'web_sys.urls'
@@ -101,7 +101,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/3.2/topics/i18n/
 
@@ -115,7 +114,6 @@ USE_L10N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
@@ -128,11 +126,15 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "app01.UserInfo"
 
-LOGIN_URL ="/login/"
+LOGIN_URL = "/login/"
 
 WHITE_LIST = [
     '/',
     '/login/',
     '/logout/',
     '/favicon.ico'
+]
+
+ROLE_URL_LIST = [
+    '/test/'
 ]
