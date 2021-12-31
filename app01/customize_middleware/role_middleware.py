@@ -1,24 +1,20 @@
 from django.utils.deprecation import MiddlewareMixin
+from app01.customize_middleware.static import role_url
 from django.shortcuts import redirect
 from web_sys import settings
 
 
 class RoleMiddleware(MiddlewareMixin):
+    """
+    用户权限url限制
+    """
 
     def process_request(self, request):
-        pass
-    #     role_url_list = settings.ROLE_URL_LIST
-    #     if request.path in role_url_list:
-    #         user = request.user
-    #         if user.is_authenticated:
-    #             user_type = user.user_type
-    #             if user_type == 1:  # admin
-    #                 path = f'/admin{request.path}'
-    #             elif user_type == 2:  # teacher
-    #                 path = f'/teacher{request.path}'
-    #             elif user_type == 3:  # student
-    #                 path = f'/student{request.path}'
-    #             else:
-    #                 path = request.path
-    #             return redirect(path)
-
+        path = request.path
+        user = request.user
+        if (not user.is_authenticated) and (path not in role_url.public_url):
+            return redirect('/login/')
+        if path not in role_url.public_url:
+            user_type = user.user_type
+            if path not in role_url.role_url_dict[user_type]:
+                return redirect('/login/')

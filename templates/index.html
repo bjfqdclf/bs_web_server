@@ -5,11 +5,10 @@
     <title>登录</title>
 </head>
 <body>
-<form action="" method="post">
-    {% csrf_token %}
+<form action="/login/" method="post">
     user <input type="text" name="username">
-    password <input type="pwd" name="password">
-    <input type="submit" value="提交">
+    password <input type="password" name="password">
+    <input type="submit" >
 </form>
 </body>
 </html>

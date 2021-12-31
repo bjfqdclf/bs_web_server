@@ -47,8 +47,11 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'app01.customize_middleware.auth_middleware.AuthMiddleware',
+
     'app01.customize_middleware.role_middleware.RoleMiddleware',
+    # 'app01.customize_middleware.host_limit_middleware.HostLimitMiddleware',
+    'app01.customize_middleware.auth_middleware.AuthMiddleware',
+
 ]
 
 ROOT_URLCONF = 'web_sys.urls'

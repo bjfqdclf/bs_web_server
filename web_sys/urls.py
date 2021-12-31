@@ -20,7 +20,8 @@ urlpatterns = [
     # 系统public页面
     path('', public_views.my_login),
     path('login/', public_views.my_login),
-    # path('create_user/', views.create_user),
+    path('not_find/', public_views.url_404),
+
     path('test/', public_views.test),
     path('test2/', public_views.test2),
 ]

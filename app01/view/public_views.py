@@ -18,10 +18,9 @@ def my_login(request):
     return render(request, 'login.html')
 
 
-def create_user(request):
-    # user = user_operation.creat_user()
+def url_404(request):
 
-    return HttpResponse('ok')
+    return render(request, 'ok')
 
 
 def test(request):
