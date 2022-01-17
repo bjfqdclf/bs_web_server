@@ -5,7 +5,7 @@ from configparser import ConfigParser
 class SysConfig:
     # 读取配置文件
     conf_exit = False
-    conf_name = "web_sys.conf"
+    conf_name = "../web_sys.conf"
     if os.path.exists(conf_name):  # 在项目根目录下启动时读取conf文件
         conf_name = conf_name
         conf_exit = True
