@@ -5,7 +5,7 @@ from configparser import ConfigParser
 class SysConfig:
     # 读取配置文件
     conf_exit = False
-    conf_name = "../web_sys.conf"
+    conf_name = "web_sys.conf"
     if os.path.exists(conf_name):  # 在项目根目录下启动时读取conf文件
         conf_name = conf_name
         conf_exit = True
@@ -20,6 +20,11 @@ class SysConfig:
             db_password = conf.get("database", "db_password")
             db_addr = conf.get("database", "db_addr")
             db_port = int(conf.get("database", "db_port"))
+            # 读取log配置
+            file_dir = conf.get("log", "file_dir", fallback="../face_sys_log.log")
+            file_level = conf.get("log", "file_level", fallback="DEBUG")
+            stream_level = conf.get("log", "stream_level", fallback="DEBUG")
+            out_put = conf.get("log", "out_put", fallback=True)
 
         except KeyError as e:
             pass

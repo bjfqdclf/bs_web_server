@@ -49,6 +49,23 @@ class Massage(models.Model):
     user = models.ForeignKey(to='UserInfo', on_delete=models.CASCADE)
 
 
+# 人脸识别记录表
+class DailyFaceRecord(models.Model):
+    person_name = models.CharField(max_length=32)
+    person_id = models.IntegerField()
+    temp = models.FloatField()
+    time = models.DateTimeField()
+    device_id = models.IntegerField()
+
+
+class HistoryFaceRecord(models.Model):
+    person_name = models.CharField(max_length=32)
+    person_id = models.IntegerField()
+    temp = models.FloatField()
+    time = models.DateTimeField()
+    device_id = models.IntegerField()
+
+
 # 操作记录表
 class DailyDataRecord(models.Model):
     type_code = models.IntegerField()  # 操作类型
