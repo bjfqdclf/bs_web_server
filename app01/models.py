@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
+import django.utils.timezone as timezone
 
 
 class ClassInfo(models.Model):
@@ -54,7 +55,7 @@ class DailyFaceRecord(models.Model):
     person_name = models.CharField(max_length=32)
     person_id = models.IntegerField()
     temp = models.FloatField()
-    time = models.DateTimeField()
+    time = models.DateTimeField('记录时间', auto_now=True)
     device_id = models.IntegerField()
 
 
@@ -72,7 +73,7 @@ class DailyDataRecord(models.Model):
     result_code = models.IntegerField(null=True)  # 操作结果状态码
     operation_user = models.IntegerField(null=True)  # 操作人员uid
     operation_msg = models.TextField(null=True)  # 操作具体信息
-    time = models.DateTimeField()  # 操作时间
+    time = models.DateTimeField('操作时间', auto_now=True)
 
 
 class HistoryDataRecord(models.Model):
@@ -100,7 +101,7 @@ class HistoryWebSysMassage(models.Model):
     type = models.IntegerField()  # 通知类型
     text = models.TextField(null=True)  # 通知内容
     status_code = models.IntegerField()  # 状态
-    data = models.DateTimeField(null=True)  # 移入时间
+    data = models.DateTimeField('移入时间', auto_now=True, null=True)
 
     # 外键
     user = models.ForeignKey(to='UserInfo', on_delete=models.CASCADE)
