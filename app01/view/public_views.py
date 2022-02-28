@@ -9,13 +9,25 @@ def all_login(request):
         if user:
             auth.login(request, user)
             request.session.set_expiry(129600)  # 3天
-            next_url = request.GET.get('next_path', '/test/')
+            next_url = request.GET.get('next_path', '/login/')
             if next_url is "/login/":
-
-                return render(request, '')
+                if user.user_type == 1:
+                    return redirect('/admin/home')
+                elif user.user_type == 2:
+                    return redirect('/teacher/home')
+                else:
+                    return redirect('/student/home')
             return redirect(next_url)
         else:
             print('login false...')
+    if request.user.is_authenticated:
+        user = request.user
+        if user.user_type == 1:
+            return redirect('/admin/home')
+        elif user.user_type == 2:
+            return redirect('/teacher/home')
+        else:
+            return redirect('/student/home')
 
     return render(request, 'index.html')
 

@@ -12,9 +12,11 @@ class RoleMiddleware(MiddlewareMixin):
     def process_request(self, request):
         path = request.path
         user = request.user
+        if path in role_url.err_url:
+            return None
         if (not user.is_authenticated) and (path not in role_url.public_url):
             return redirect('/login/')
         if path not in role_url.public_url:
             user_type = user.user_type
             if path not in role_url.role_url_dict[user_type]:
-                return redirect('/login/')
+                return redirect('/401/')

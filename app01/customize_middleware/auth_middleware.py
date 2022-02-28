@@ -1,7 +1,7 @@
 from django.utils.deprecation import MiddlewareMixin
 from django.shortcuts import redirect
 from web_sys import settings
-
+from app01.customize_middleware.static import role_url
 
 class AuthMiddleware(MiddlewareMixin):
 
