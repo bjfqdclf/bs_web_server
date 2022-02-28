@@ -129,6 +129,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = "app01.UserInfo"
 
+AUTHENTICATION_BACKENDS = ['app01.auth_backend.user_backends.UserBackends', ]
+
 LOGIN_URL = "/login/"
 
 WHITE_LIST = [

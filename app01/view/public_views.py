@@ -1,18 +1,18 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import auth
 
-
 def all_login(request):
     if request.method == "POST":
         username = request.POST.get('username')
         pwd = request.POST.get('password')
         user = auth.authenticate(request, username=username, password=pwd)
-        if not user:
-            user = auth.authenticate(request, code=username, password=pwd)
         if user:
             auth.login(request, user)
             request.session.set_expiry(129600)  # 3天
             next_url = request.GET.get('next_path', '/test/')
+            if next_url is "/login/":
+
+                return render(request, '')
             return redirect(next_url)
         else:
             print('login false...')
