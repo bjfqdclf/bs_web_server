@@ -12,10 +12,11 @@ class ClassInfo(models.Model):
 
 
 class UserInfo(AbstractUser):
-    code = models.IntegerField()  # 工号/学号(2021001001)
+    code = models.IntegerField(unique=True)  # 工号/学号(2021001001)
     name = models.CharField(max_length=32)  # 姓名
-    user_type = models.IntegerField()  # 1 管理员    2 老师    3 学生
+    user_type = models.IntegerField(unique=True)  # 1 管理员    2 老师    3 学生
     phone_number = models.IntegerField(null=True)
+    REQUIRED_FIELDS = ['code', 'name', 'user_type']
 
     # 外键
     class_info = models.ForeignKey(to='ClassInfo', null=True, on_delete=models.DO_NOTHING)

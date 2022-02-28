@@ -2,11 +2,13 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import auth
 
 
-def my_login(request):
+def all_login(request):
     if request.method == "POST":
         username = request.POST.get('username')
         pwd = request.POST.get('password')
         user = auth.authenticate(request, username=username, password=pwd)
+        if not user:
+            user = auth.authenticate(request, code=username, password=pwd)
         if user:
             auth.login(request, user)
             request.session.set_expiry(129600)  # 3天
@@ -15,7 +17,7 @@ def my_login(request):
         else:
             print('login false...')
 
-    return render(request, 'login.html')
+    return render(request, 'index.html')
 
 
 def url_404(request):

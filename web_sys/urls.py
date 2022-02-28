@@ -18,8 +18,8 @@ from app01.view import public_views
 
 urlpatterns = [
     # 系统public页面
-    path('', public_views.my_login),
-    path('login/', public_views.my_login),
+    path('', public_views.all_login),
+    path('login/', public_views.all_login),
     path('not_find/', public_views.url_404),
 
     path('test/', public_views.test),
