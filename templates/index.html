@@ -2,13 +2,25 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>登录</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/index.css">
+    <title>Title</title>
 </head>
 <body>
-<form action="/login/" method="post">
-    user <input type="text" name="username">
-    password <input type="password" name="password">
-    <input type="submit" >
-</form>
+<div id="login-box">
+    <h1>Login</h1>
+    <form class="form" action="/login/" method="post">
+        {% csrf_token %}
+        <div class="item">
+            <i class="fa fa-github-alt" style="font-size:24px"></i>
+            <input type="text" name="username" >
+        </div>
+        <div class="item">
+            <i class="fa fa-search" style="font-size:24px"></i>
+            <input type="password" name="password">
+        </div>
+        <input type="submit" class="input-btn" value="登录">
+    </form>
+</div>
+
 </body>
 </html>
