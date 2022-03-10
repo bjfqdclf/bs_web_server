@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
-from django.contrib import auth
+from django.contrib import auth, messages
+
 
 def all_login(request):
     if request.method == "POST":
@@ -19,7 +20,10 @@ def all_login(request):
                     return redirect('/student/home')
             return redirect(next_url)
         else:
-            print('login false...')
+
+            messages.error(request, '用户名或密码不正确')
+
+            return render(request, 'index.html')
     if request.user.is_authenticated:
         user = request.user
         if user.user_type == 1:
