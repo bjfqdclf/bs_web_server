@@ -20,13 +20,14 @@ urlpatterns = [
     # 系统public页面
     path('', public_views.all_login),
     path('login/', public_views.all_login),
+    path('logout/', public_views.logout),
     path('not_find/', public_views.url_404),
 
     path('test/', public_views.test),
     path('test2/', public_views.test2),
 
     # 管理员页面
-    path('admin/home', admin_views.home),
+    path('admin/home/', admin_views.home),
 
 
 ]

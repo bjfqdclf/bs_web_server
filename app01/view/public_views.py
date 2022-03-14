@@ -36,6 +36,12 @@ def all_login(request):
     return render(request, 'index.html')
 
 
+def logout(request):
+    """退出账户"""
+    request.session.flush()
+    return render(request, 'index.html')
+
+
 def url_404(request):
 
     return render(request, 'ok')

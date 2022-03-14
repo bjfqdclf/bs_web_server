@@ -2,4 +2,5 @@ from django.shortcuts import render, HttpResponse, redirect
 
 
 def home(request):
-    return render(request, 'admin/admin_home.html')
+    user = request.user
+    return render(request, 'admin/admin_home.html', {'username': user.name})

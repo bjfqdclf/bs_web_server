@@ -11,12 +11,12 @@ err_url = [
 
 role_url_dict = {
     1: [  # admin_url
-        '/admin/home',
+        '/admin/home/',
     ],
     2: [  # teacher_url
-        '/teacher/home',
+        '/teacher/home/',
     ],
     3: [  # student_url
-        '/student/home',
+        '/student/home/',
     ]
 }
