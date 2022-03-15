@@ -28,6 +28,7 @@ urlpatterns = [
 
     # 管理员页面
     path('admin/home/', admin_views.home),
+    path('admin/add/user/', admin_views.add_user),
 
 
 ]

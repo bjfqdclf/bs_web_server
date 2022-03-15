@@ -12,6 +12,8 @@ err_url = [
 role_url_dict = {
     1: [  # admin_url
         '/admin/home/',
+        '/admin/add/user/',
+
     ],
     2: [  # teacher_url
         '/teacher/home/',
