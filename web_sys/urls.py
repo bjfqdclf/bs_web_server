@@ -14,7 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path
-from app01.view import public_views, admin_views
+from app01.view import public_views, admin_views, teacher_views, student_views
 
 urlpatterns = [
     # 系统public页面
@@ -30,5 +30,10 @@ urlpatterns = [
     path('admin/home/', admin_views.home),
     path('admin/add/user/', admin_views.add_user),
 
+    # 教师页面
+    path('teacher/home/', teacher_views.home),
+
+    # 学生页面
+    path('student/home/', student_views.home),
 
 ]
