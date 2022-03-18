@@ -22,12 +22,13 @@
         <input type="submit" class="input-btn" value="登录">
     </form>
 
-<script>
-    {% if messages %}
-    {% for msg in messages %}
-        alert('{{ msg.message }}');
-    {% endfor %}
-{% endif %}
-</script>
+    <script>
+        {% if messages %}
+            {% for msg in messages %}
+                alert('{{ msg.message }}');
+            {% endfor %}
+        {% endif %}
+    </script>
+</div>
 </body>
 </html>

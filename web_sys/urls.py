@@ -22,6 +22,7 @@ urlpatterns = [
     path('login/', public_views.all_login),
     path('logout/', public_views.logout),
     path('not_find/', public_views.url_404),
+    path('edit_passwd_ajax/', public_views.edit_passwd_ajax),
 
     path('test/', public_views.test),
     path('test2/', public_views.test2),
@@ -29,11 +30,15 @@ urlpatterns = [
     # 管理员页面
     path('admin/home/', admin_views.home),
     path('admin/add/user/', admin_views.add_user),
+    path('admin/edit_passwd/', admin_views.edit_passwd),
+
 
     # 教师页面
     path('teacher/home/', teacher_views.home),
+    path('teacher/edit_passwd/', teacher_views.edit_passwd),
 
     # 学生页面
     path('student/home/', student_views.home),
+    path('student/edit_passwd/', student_views.edit_passwd),
 
 ]

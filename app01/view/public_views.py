@@ -1,5 +1,8 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import auth, messages
+from django.views.decorators.csrf import csrf_exempt
+from app01.base_interface.general_functions import edit_password
+import json
 
 
 def all_login(request):
@@ -40,6 +43,19 @@ def logout(request):
     """退出账户"""
     request.session.flush()
     return render(request, 'index.html')
+
+
+@csrf_exempt
+def edit_passwd_ajax(request):
+    user = request.user
+    if request.method == 'POST':
+        data = request.POST
+
+        re_data = edit_password(data, user)
+        status = re_data['status']
+        if status == 'success':
+            request.session.flush()
+        return HttpResponse(json.dumps(re_data))
 
 
 def url_404(request):

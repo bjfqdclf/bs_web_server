@@ -1,0 +1,41 @@
+{% extends "admin/admin_left_bar.html" %}
+{% block title %}
+{#    <script type="text/javascript" src = '/static/js/edit_password.js'></script>#}
+    <link rel="stylesheet" type="text/css" href="/static/css/edit_passwd.css">
+    <title>管理员修改密码</title>
+{% endblock title %}
+
+{% block content %}
+{#    <form action="">#}
+{#        {% csrf_token %}#}
+{#        <h2 class="username">用户名：{{ username }}</h2>#}
+{#        <h2 class="code">账号：{{ code }}</h2>#}
+{#        旧密码: <input name='old_password' id='old_password'> <br>#}
+{#        密码： <input name='new_password' id='new_password'> <br>#}
+{#        再次输入密码： <input name='re_password' id='re_password'> <br>#}
+{#        <button id='re-password-btn'>确认</button>#}
+{#    </form>#}
+<div id="login-box">
+    <h1>修改密码</h1>
+    <form class="form" action="">
+        {% csrf_token %}
+        <div class="item">
+            <i class="fa fa-github-alt" style="font-size:24px"></i>
+            <input type="text" name="username" id="old_password" placeholder="旧密码">
+        </div>
+        <div class="item">
+            <i class="fas fa-key" style="font-size:24px"></i>
+            <input type="password" name="password" id="new_password" placeholder="密码">
+        </div>
+        <div class="item">
+            <i class="fas fa-redo" style="font-size:24px"></i>
+            <input type="text" name="username" id="re_password" placeholder="再次输入密码">
+        </div>
+        <input type="submit" class="input-btn" id="re-password-btn">
+    </form>
+</div>
+
+
+<script type="text/javascript" src="/static/static/jquery-3.6.0.js"></script>
+<script type="text/javascript" src = '/static/js/edit_password.js'></script>
+{% endblock content %}

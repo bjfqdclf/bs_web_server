@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="/static/css/admin_left_bar.css">
-{#    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>#}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.css">
+
     {% block title %}
     <title>主页</title>
     {% endblock title%}
@@ -23,7 +23,7 @@
             <li><a href="#"><i class="fas fa-stream"></i>班级管理</a></li>
             <li><a href="#"><i class="fas fa-calendar-week"></i>教师设置</a></li>
             <li><a href="#"><i class="far fa-question-circle"></i>通知中心</a></li>
-            <li><a href="#"><i class="fas fa-sliders-h"></i>账号设置</a></li>
+            <li><a href="/admin/edit_passwd/"><i class="fas fa-key"></i>修改密码</a></li>
             <li><a href="/logout/"><i class="fas fa-sign-out-alt"></i>退出登录</a></li>
         </ul>
     </div>
