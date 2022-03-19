@@ -1,9 +1,11 @@
+document.write('<script src="/static/js/message.js" type="text/javascript" charset="utf-8"></script>');
+
 $('#add-btn').click(function (e) {
     e.preventDefault();
     var last_div = $(".class-form .item").eq(-1)
     var id_next = last_div.attr('id')
     if (id_next === "10") {
-        alert("添加行数以达到上限！");
+        Message.error("添加行数以达到上限！")
     } else {
         var add_item = `<div class="item" id="${++id_next}">
                 <i class="fas fa-greater-than" style="font-size:24px"></i>
@@ -18,7 +20,7 @@ $("#lower-btn").click(function (e) {
     e.preventDefault();
     var last_div = $(".class-form .item").eq(-1)
     if (last_div.attr('id') === "1") {
-        alert("不可再删除！")
+        Message.error("不可再删除！")
     } else {
         last_div.remove()
     }
@@ -43,8 +45,9 @@ $("#submit-btn").click(function (e) {
         success: function (data) {
             data = JSON.parse(data);
             if (data.status === 'success') {
-                alert('插入成功！')
-                window.location.href = '/admin/class_manage/'
+                Message.success("创建班级成功！")
+                setTimeout('window.location.href = \'/admin/class_manage/\'',1000)
+
             }
         },
     })
