@@ -1,4 +1,6 @@
 from django.contrib import auth
+from app01.models import *
+from app01.base_interface.code_generate import digit_completion
 
 
 def edit_password(data, user):
@@ -13,4 +15,5 @@ def edit_password(data, user):
     old_user.set_password(new_password)
     old_user.save()
     return {'status': 'success', 'message': '密码修改成功'}
+
 

@@ -18,3 +18,7 @@ def students_code_generate(class_id, num):
     code = int(
         f'{code_generate.digit_completion(class_obj.year, 4)}{code_generate.digit_completion(class_obj.code, 3)}{code_generate.digit_completion(num, 3)}')
     return code
+
+
+def teacher_code_generate(num):
+    pass

@@ -1,0 +1,42 @@
+{% extends "admin/admin_left_bar.html" %}
+{% block title %}
+    <link rel="stylesheet" href="/static/css/admin_class_manage.css">
+    <link rel="stylesheet" href="/static/css/table_scroll.css">
+    <title>班级管理</title>
+{% endblock title %}
+
+{% block content %}
+    <div class="class-info-container">
+        <h1 class="class-title">班级信息</h1>
+        <div class="tablebox">
+
+            <table id="tableId" border="0" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr class="class-info-title">
+                    <th>序号</th>
+                    <th>班级名称</th>
+                    <th>班级编码</th>
+                    <th>班级创建时间</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for class in class_list %}
+
+                    <tr>
+                        <th>{{ class.id }}</th>
+                        <th>{{ class.name }}</th>
+                        <th>{{ class.code }}</th>
+                        <th>{{ class.year }}</th>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="class-add-container">
+        <h1 class="class-title">添加班级</h1>
+    </div>
+
+{% endblock content %}

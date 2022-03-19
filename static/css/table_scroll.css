@@ -1,0 +1,51 @@
+table, tbody, tfoot, thead, tr, th, td {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+    font-size: 100%;
+    vertical-align: baseline;
+    background: transparent;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 0px;
+}
+
+.tablebox {
+    width: 90%;
+    height: 400px;
+    overflow: hidden;
+    margin: 50px auto;
+}
+
+.tablebox table {
+    width: 100%;
+}
+
+.tablebox table th, .tablebox table td {
+    font-size: 20px;
+    text-align: center;
+    line-height: 45px;
+}
+
+
+.tablebox table tbody:nth-child(even) {
+    color: honeydew;
+}
+
+.tablebox table tbody tr:nth-child(even) {
+    background-color: blue;
+}
+
+.tablebox table tbody tr:nth-child(odd) {
+    background-color: green;
+}
+
+.tablebox.table_md table td, .tablebox.table_md table th {
+    line-height: 50px;
+}
+
+.class-info-title th {
+    color: black !important;
+    background-color: grey !important;
+
+}

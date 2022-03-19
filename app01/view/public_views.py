@@ -14,7 +14,7 @@ def all_login(request):
             auth.login(request, user)
             request.session.set_expiry(129600)  # 3天
             next_url = request.GET.get('next_path', '/login/')
-            if next_url is "/login/":
+            if next_url == "/login/":
                 if user.user_type == 1:
                     return redirect('/admin/home')
                 elif user.user_type == 2:
