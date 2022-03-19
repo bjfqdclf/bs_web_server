@@ -32,6 +32,7 @@ urlpatterns = [
     path('admin/add/user/', admin_views.add_user),
     path('admin/edit_passwd/', admin_views.edit_passwd),
     path('admin/class_manage/', admin_views.class_manage),
+    path('admin/add_class_ajax/', admin_views.add_class_ajax),
 
 
     # 教师页面

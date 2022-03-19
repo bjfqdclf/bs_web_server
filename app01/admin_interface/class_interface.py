@@ -39,4 +39,3 @@ def add_class(class_name_list):
             'year': class_query.year
         })
     return datalist
-

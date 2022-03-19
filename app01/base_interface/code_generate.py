@@ -21,7 +21,7 @@ def obtain_code(year, code_type):
     :param code_type: 类型
     :return: str
     """
-    code_query = GenerateCode.objects.filter(year=year, code_type=code_type).order_by(GenerateCode.code).first()
+    code_query = GenerateCode.objects.filter(year=year, code_type=code_type).order_by('code').first()
     if not code_query:
         GenerateCode.objects.create(year=year, code_type=code_type, code='1')
         code = 1

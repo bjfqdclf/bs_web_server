@@ -16,6 +16,7 @@ role_url_dict = {
         '/admin/add/user/',
         '/admin/edit_passwd/',
         '/admin/class_manage/',
+        '/admin/add_class_ajax/',
 
     ],
     2: [  # teacher_url
