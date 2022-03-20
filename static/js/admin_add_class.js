@@ -32,9 +32,11 @@ $("#submit-btn").click(function (e) {
     var datalist = [];
     var all_div = $(".class-form .item")
     all_div.each(function (index, one_div) {
+        let class_name = $(this).find('input').val()
         datalist.push({
             "id": index,
-            "name": $(this).find('input').val()
+            "name": class_name
+
         })
     })
     $.ajax({
@@ -48,6 +50,8 @@ $("#submit-btn").click(function (e) {
                 Message.success("创建班级成功！")
                 setTimeout('window.location.href = \'/admin/class_manage/\'',1000)
 
+            }else{
+                Message.error(data['message'])
             }
         },
     })

@@ -29,7 +29,13 @@ def add_class_ajax(request):
         data = request.POST.dict()
         for key in data.keys():
             new_data = eval(key)
-        name_list = [value['name'] for value in new_data]
+        name_list = []
+        for value in new_data:
+            if not value['name']:
+                data = {'status': 'err',
+                        'message': '班级名称不可为空！'}
+                return HttpResponse(json.dumps(data))
+            name_list.append(value['name'])
         datalist = add_class(name_list)
         data = {'status': 'success',
                 'datalist': datalist}
@@ -72,11 +78,13 @@ def get_teacher_class_ajax(request):
     if request.method == 'POST':
         datalist = []
         teacher_unique_code = request.POST.dict()['teacher_unique_code']
+        teacher_id = request.POST.dict()['teacher_id']
         queries = TeacherToClass.objects.filter(teacher_unique_code=teacher_unique_code).all()
         for query in queries:
             class_query = ClassInfo.objects.filter(unique_code=query.class_unique_code).first()
             datalist.append(f'{class_query.name}-{class_query.year}')
-        data = {'status': 'success', 'class_list': datalist}
+        teacher_name = UserInfo.objects.filter(code=teacher_id).first().username
+        data = {'status': 'success', 'class_list': datalist, 'username': teacher_name}
         return HttpResponse(json.dumps(data))
 
 

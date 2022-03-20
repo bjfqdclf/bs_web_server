@@ -52,6 +52,7 @@ def add_teacher(name, class_list, phone_num=None):
                                          unique_code=unique_code,
                                          phone_number=phone_num, user_type=2)
     user_query.set_password('1')
+    user_query.save()
     for class_unique_code in class_list:
         TeacherToClass.objects.create(class_unique_code=class_unique_code, teacher_unique_code=user_query.unique_code)
     return True

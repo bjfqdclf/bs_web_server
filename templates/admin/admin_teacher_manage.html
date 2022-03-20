@@ -33,7 +33,7 @@
                             <th>无</th>
                         {% endif %}
                         <th>
-                            <a class="teacher-class-info" id="{{ teacher.unique_code }}">详情</a>
+                            <a class="teacher-class-info" style="cursor:pointer;" id="{{ teacher.unique_code }}" name="{{ teacher.code }}">详情</a>
                         </th>
                     </tr>
 
@@ -49,11 +49,11 @@
         <form class="class-form" action="">
             {% csrf_token %}
             <div class="item">
-                <i class="fas fa-greater-than" style="font-size:24px"></i>
+                <i class="fas fa-user-plus" style="font-size:24px"></i>
                 <input type="text" id="name" placeholder="姓名">
             </div>
             <div class="item">
-                <i class="fas fa-greater-than" style="font-size:24px"></i>
+                <i class="fas fa-phone-alt" style="font-size:24px"></i>
                 <input type="text" id="phone-num" placeholder="手机号">
             </div>
             <div class="item">
