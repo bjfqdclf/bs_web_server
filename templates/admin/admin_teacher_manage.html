@@ -1,0 +1,75 @@
+{% extends "admin/admin_left_bar.html" %}
+{% block title %}
+    <link rel="stylesheet" href="/static/css/admin_teacher_manage.css">
+    <link rel="stylesheet" href="/static/css/table_scroll.css">
+    <title>教师管理</title>
+{% endblock title %}
+
+{% block content %}
+    <div class="class-info-container">
+        <h1 class="class-title">教师信息</h1>
+        <div class="tablebox">
+
+            <table id="tableId" border="0" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr class="class-info-title">
+                    <th>序号</th>
+                    <th>姓名</th>
+                    <th>工号</th>
+                    <th>手机号</th>
+                    <th>班级管理</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for teacher in teacher_list %}
+
+                    <tr>
+                        <th>{{ teacher.id }}</th>
+                        <th>{{ teacher.name }}</th>
+                        <th>{{ teacher.code }}</th>
+                        {% if teacher.phone_num %}
+                            <th>{{ teacher.phone_num }}</th>
+                        {% else %}
+                            <th>无</th>
+                        {% endif %}
+                        <th>
+                            <a class="teacher-class-info" id="{{ teacher.unique_code }}">详情</a>
+                        </th>
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="class-add-container" id="login-box">
+        <h1 class="class-title">添加教师</h1>
+        <form class="class-form" action="">
+            {% csrf_token %}
+            <div class="item">
+                <i class="fas fa-greater-than" style="font-size:24px"></i>
+                <input type="text" id="name" placeholder="姓名">
+            </div>
+            <div class="item">
+                <i class="fas fa-greater-than" style="font-size:24px"></i>
+                <input type="text" id="phone-num" placeholder="手机号">
+            </div>
+            <div class="item">
+                <select class="form-select teacher-select-class" id="select-class" multiple>
+                    {% for class in class_list %}
+                        <option value={{ class.unique_code }}>{{ class.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <input type="submit" class="input-btn" id="submit-btn">
+        </form>
+    </div>
+
+
+    <script type="text/javascript" src="/static/static/jquery-3.6.0.js"></script>
+    <script type="text/javascript" src='/static/js/table_scroll.js'></script>
+    <script type="text/javascript" src='/static/js/admin_teacher_manage.js'></script>
+{% endblock content %}

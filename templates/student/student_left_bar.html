@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/static/bootstrap.min.css">
+    <script type="text/javascript" src='/static/static/bootstrap.min.js'></script>
     <link rel="stylesheet" href="/static/css/student_left_bar.css">
+    <link rel="stylesheet" href="/static/css/message_box.css">
     {#    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>#}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.css">
     {% block title %}
@@ -11,7 +14,7 @@
 </head>
 <body>
 <input type="checkbox" id="check">
-<label for="check">
+<label for="check" style="display: inline;">
     <i class="fas fa-bars" id="btn"></i>
     <i class="fas fa-times" id="cancel"></i>
 </label>
@@ -32,7 +35,7 @@
 </section>
 <p style="background:none;height: 5%;position: fixed;bottom: 0px;width: 100%;text-align: center;
 "><img style="padding-top:2px; width: 15px" src="/static/img/备案.png"><a class="banquan" style="color:#000;"
-                                           href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2021015036"
-                                           target="_blank">陕ICP备2021015036号-1</a></p>
+                                                                        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2021015036"
+                                                                        target="_blank">陕ICP备2021015036号-1</a></p>
 </body>
 </html>

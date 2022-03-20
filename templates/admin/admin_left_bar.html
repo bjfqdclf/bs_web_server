@@ -2,7 +2,10 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="/static/static/bootstrap.min.css">
+    <script type="text/javascript" src='/static/static/bootstrap.min.js'></script>
     <link rel="stylesheet" href="/static/css/admin_left_bar.css">
+    <link rel="stylesheet" href="/static/css/message_box.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.css">
     {% block title %}
         <title>主页</title>
@@ -10,7 +13,7 @@
 </head>
 <body>
 <input type="checkbox" id="check">
-<label for="check">
+<label for="check" id="check-cancel-btn" style="display: inline;">
     <i class="fas fa-bars" id="btn"></i>
     <i class="fas fa-times" id="cancel"></i>
 </label>
@@ -20,18 +23,18 @@
         <li><a href="/admin/home/"><i class="fas fa-home"></i>主页</a></li>
         <li><a href="/admin/add/user/"><i class="fas fa-user-plus"></i>添加账号</a></li>
         <li><a href="/admin/class_manage/"><i class="fas fa-stream"></i>班级管理</a></li>
-        <li><a href="#"><i class="fas fa-calendar-week"></i>教师设置</a></li>
+        <li><a href="/admin/teacher_manage/"><i class="fas fa-calendar-week"></i>教师设置</a></li>
         <li><a href="#"><i class="far fa-question-circle"></i>通知中心</a></li>
         <li><a href="/admin/edit_passwd/"><i class="fas fa-key"></i>修改密码</a></li>
         <li><a href="/logout/"><i class="fas fa-sign-out-alt"></i>退出登录</a></li>
     </ul>
 </div>
-<section>
+<section id="all-body">
     {% block content %}{% endblock content %}
 </section>
 <p style="background:none;height: 5%;position: fixed;bottom: 0px;width: 100%;text-align: center;
 "><img style="padding-top:2px; width: 15px" src="/static/img/备案.png"><a class="banquan" style="color:#000;"
-                                           href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2021015036"
-                                           target="_blank">陕ICP备2021015036号-1</a></p>
+                                                                        href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2021015036"
+                                                                        target="_blank">陕ICP备2021015036号-1</a></p>
 </body>
 </html>

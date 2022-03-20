@@ -40,6 +40,7 @@ body{
     border-top: 1px solid rgba(255,255,255,.1);
     border-bottom: 1px solid black;
     translation: 1s;
+    text-decoration: none;
 }
 
 ul li:hover a{

@@ -33,6 +33,9 @@ urlpatterns = [
     path('admin/edit_passwd/', admin_views.edit_passwd),
     path('admin/class_manage/', admin_views.class_manage),
     path('admin/add_class_ajax/', admin_views.add_class_ajax),
+    path('admin/teacher_manage/', admin_views.teacher_manage),
+    path('admin/add_teacher_ajax/', admin_views.add_teacher_ajax),
+    path('admin/get_teacher_class_ajax/', admin_views.get_teacher_class_ajax),
 
 
     # 教师页面

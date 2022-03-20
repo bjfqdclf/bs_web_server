@@ -14,8 +14,8 @@ class ClassInfo(models.Model):
 class UserInfo(AbstractUser):
     code = models.CharField(unique=True, max_length=256, help_text='用户编号')  # 工号/学号(2021001001)
     unique_code = models.CharField(max_length=256, help_text='用户唯一识别码')
-    user_type = models.IntegerField(unique=True, help_text='用户角色类型')  # 1-管理员、2-教师、3-学生
-    phone_number = models.IntegerField(unique=True, null=True)
+    user_type = models.IntegerField(help_text='用户角色类型')  # 1-管理员、2-教师、3-学生
+    phone_number = models.CharField(unique=True, max_length=32, null=True)
 
     class_unique_code = models.CharField(max_length=256, help_text='班级唯一识别码')
     REQUIRED_FIELDS = ['code', 'user_type']
@@ -30,7 +30,7 @@ class TeacherToClass(models.Model):
 class GenerateCode(models.Model):
     year = models.CharField(null=True, max_length=32, help_text='年份')
     code = models.CharField(max_length=32, help_text='编号')
-    code_type = models.CharField(max_length=32, help_text='类型')     # 01-admin、02-教师、03-学生  1-班级
+    code_type = models.CharField(max_length=32, help_text='类型')  # 01-admin、02-教师、03-学生  1-班级
 
 
 # 人脸识别记录表

@@ -26,6 +26,7 @@ def add_class(class_name_list):
     :return: class_info_list
     """
     datalist = []
+    # TODO 检查提交数据合法性
     year = str(datetime.datetime.now().year)
     for index, class_name in enumerate(class_name_list):
         code = code_generate.obtain_code(year, 1)
@@ -39,3 +40,8 @@ def add_class(class_name_list):
             'year': class_query.year
         })
     return datalist
+
+
+def check_add_class():
+
+    return
