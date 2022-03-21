@@ -33,5 +33,6 @@ role_url_dict = {
     3: [  # student_url
         '/student/home/',
         '/student/edit_passwd/',
+        '/student/cat_class/',
     ]
 }

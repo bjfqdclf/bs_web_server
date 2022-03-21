@@ -48,5 +48,6 @@ urlpatterns = [
     # 学生页面
     path('student/home/', student_views.home),
     path('student/edit_passwd/', student_views.edit_passwd),
+    path('student/cat_class/', student_views.cat_class),
 
 ]

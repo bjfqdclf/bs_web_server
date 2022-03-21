@@ -1,0 +1,76 @@
+{% extends "student/student_left_bar.html" %}
+{% block title %}
+    <link rel="stylesheet" href="/static/css/table_scroll.css">
+    <link rel="stylesheet" href="/static/css/student_cat_class.css">
+    <title>学生修改密码</title>
+{% endblock title %}
+
+{% block content %}
+    <div class="class-info-container">
+        <h1 class="class-title">班级成员信息</h1>
+        <br>
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                aria-controls="offcanvasRight">班级信息
+        </button>
+        <div class="tablebox">
+
+            <table id="tableId" border="0" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr class="class-info-title">
+                    <th>序号</th>
+                    <th>名字</th>
+                    <th>学号</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for user in user_info %}
+
+                    <tr>
+                        <th>{{ user.id }}</th>
+                        <th>{{ user.name }}</th>
+                        <th>{{ user.code }}</th>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasRightLabel">所在班级信息</h5>
+
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+            <hr>
+            <br>
+            <h5 style="color: blueviolet">班级：{{ class_info.class_info }}</h5>
+            <br>
+            <hr>
+            <h5 style="color: gray">教师：</h5>
+
+            <table class="table">
+                <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">姓名</th>
+                    <th scope="col">工号</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for teacher in class_info.teacher_info %}
+                    <tr>
+                        <th scope="row">{{ teacher.id }}</th>
+                        <th>{{ teacher.name }}</th>
+                        <th>{{ teacher.code }}</th>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/static/static/jquery-3.6.0.js"></script>
+    <script type="text/javascript" src='/static/js/table_scroll.js'></script>
+    {#<script type="text/javascript" src = '/static/js/edit_password.js'></script>#}
+{% endblock content %}
