@@ -56,3 +56,70 @@ def add_teacher(name, class_list, phone_num=None):
     for class_unique_code in class_list:
         TeacherToClass.objects.create(class_unique_code=class_unique_code, teacher_unique_code=user_query.unique_code)
     return True
+
+
+def get_student_info(teacher_unique_code):
+    class_queries = TeacherToClass.objects.filter(teacher_unique_code=teacher_unique_code).all()
+    if not class_queries:
+        class_unique_code_list = []
+    else:
+        class_unique_code_list = [class_query.class_unique_code for class_query in class_queries]
+    class_queries = ClassInfo.objects.filter(unique_code__in=class_unique_code_list)
+    class_list = [{'name': f'{class_query.name}-{class_query.year}',
+                   'unique_code': class_query.unique_code} for class_query in class_queries]
+    class_map = {class_query.unique_code: f'{class_query.name}-{class_query.year}' for class_query in class_queries}
+    student_queries = (UserInfo.objects
+                       .filter(user_type=3,
+                               class_unique_code__in=class_unique_code_list)
+                       .order_by('class_unique_code', 'code').all())
+    student_info_list = []
+    id_index = 1
+    for student_query in student_queries:
+        student_info_list.append({'id': id_index,
+                                  'rel_id': student_query.id,
+                                  'name': student_query.username,
+                                  'code': student_query.code,
+                                  'class_name': class_map[student_query.class_unique_code],
+                                  'name_code': f'{student_query.username}-{student_query.code}',
+                                  'phone_num': student_query.phone_number,
+                                  'unique_code': student_query.unique_code})
+        id_index += 1
+    return student_info_list, class_list
+
+
+def add_student(name, class_unique_code, phone_num=None):
+    """
+    添加学生
+    :param name:
+    :param class_unique_code:
+    :param phone_num:
+    :return:
+    """
+    year = str(datetime.datetime.now().year)
+    code = code_generate.obtain_code(year, 3)
+    rel_code = year + code + '3'
+    unique_code = uuid.uuid4().hex
+    if not phone_num:
+        user_query = UserInfo.objects.create(username=name, code=rel_code,
+                                             unique_code=unique_code, class_unique_code=class_unique_code,
+                                             user_type=3)
+    else:
+        user_query = UserInfo.objects.create(username=name, code=rel_code,
+                                             unique_code=unique_code, class_unique_code=class_unique_code,
+                                             phone_number=phone_num, user_type=3)
+    user_query.set_password('1')
+    user_query.save()
+    return True
+
+
+def switch_student_class(student_unique_code, class_unique_code):
+    """
+    切换学生班级
+    :param student_unique_code:
+    :param class_unique_code:
+    :return:
+    """
+    student = UserInfo.objects.filter(unique_code=student_unique_code).first()
+    student.class_unique_code = class_unique_code
+    student.save()
+    return True

@@ -41,6 +41,9 @@ urlpatterns = [
     # 教师页面
     path('teacher/home/', teacher_views.home),
     path('teacher/edit_passwd/', teacher_views.edit_passwd),
+    path("teacher/student_manage/", teacher_views.student_manage),
+    path('teacher/add_student_ajax/', teacher_views.add_student_ajax),
+    path('teacher/switch_student_class_ajax/', teacher_views.switch_student_class_ajax),
 
     # 学生页面
     path('student/home/', student_views.home),

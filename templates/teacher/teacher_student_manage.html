@@ -1,0 +1,111 @@
+{% extends "teacher/teacher_left_bar.html" %}
+{% block title %}
+    <link rel="stylesheet" href="/static/css/teacher_student_manage.css">
+    <link rel="stylesheet" href="/static/css/table_scroll.css">
+    <title>教师管理</title>
+{% endblock title %}
+
+{% block content %}
+    <div class="class-info-container">
+        <h1 class="class-title">学生信息</h1>
+        <div class="tablebox">
+
+            <table id="tableId" border="0" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr class="class-info-title">
+                    <th>序号</th>
+                    <th>姓名</th>
+                    <th>学号</th>
+                    <th>手机号</th>
+                    <th>班级</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for student in student_info %}
+
+                    <tr>
+                        <th>{{ student.id }}</th>
+                        <th>{{ student.name }}</th>
+                        <th>{{ student.code }}</th>
+                        {% if student.phone_num %}
+                            <th>{{ student.phone_num }}</th>
+                        {% else %}
+                            <th>无</th>
+                        {% endif %}
+                        {% if student.class_name %}
+                            <th>{{ student.class_name }}</th>
+                        {% else %}
+                            <th>未分配班级</th>
+                        {% endif %}
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="class-add-container" id="login-box">
+        <h1 class="class-title">添加学生</h1>
+        <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight"
+                aria-controls="offcanvasRight">学生班级分配
+        </button>
+        <br>
+        <br>
+        <form class="class-form" action="">
+            {% csrf_token %}
+            <div class="item">
+                <i class="fas fa-user-plus" style="font-size:24px"></i>
+                <input type="text" id="name" placeholder="姓名">
+            </div>
+            <div class="item">
+                <i class="fas fa-phone-alt" style="font-size:24px"></i>
+                <input type="text" id="phone-num" placeholder="手机号">
+            </div>
+            <div class="item">
+                <select class="form-select" aria-label=".form-select-lg example" id="select-class">
+                    {% for class in class_info %}
+                        <option value={{ class.unique_code }}>{{ class.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <input type="submit" class="input-btn" id="submit-btn">
+        </form>
+    </div>
+
+    <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+        <div class="offcanvas-header">
+            <h5 class="offcanvas-title" id="offcanvasRightLabel">学生重新分配班级</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <form action="">
+            <div class="offcanvas-body">
+                <div class="item">
+                    <select class="form-select" aria-label=".form-select-lg example" id="left-bar-select-student">
+                        {% for student in student_info %}
+                            <option value={{ student.unique_code }}>{{ student.name_code }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <br>
+                <br>
+                <div class="item">
+                    <select class="form-select" aria-label=".form-select-lg example" id="left-bar-select-class">
+                        {% for class in class_info %}
+                            <option value={{ class.unique_code }}>{{ class.name }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <br>
+                <input class="btn btn-primary" type="submit" value="提交" id="submit-switch-btn">
+            </div>
+        </form>
+
+    </div>
+
+    <script type="text/javascript" src="/static/static/jquery-3.6.0.js"></script>
+    <script type="text/javascript" src='/static/js/table_scroll.js'></script>
+    <script type="text/javascript" src='/static/js/teacher_student_manage.js'></script>
+{% endblock content %}
