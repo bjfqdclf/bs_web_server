@@ -23,9 +23,9 @@ urlpatterns = [
     path('logout/', public_views.logout),
     path('not_find/', public_views.url_404),
     path('edit_passwd_ajax/', public_views.edit_passwd_ajax),
+    path('get_message_detail_ajax/', public_views.get_message_detail_ajax),
+    path('message_read_ajax/', public_views.message_read_ajax),
 
-    path('test/', public_views.test),
-    path('test2/', public_views.test2),
 
     # 管理员页面
     path('admin/home/', admin_views.home),
@@ -36,6 +36,7 @@ urlpatterns = [
     path('admin/teacher_manage/', admin_views.teacher_manage),
     path('admin/add_teacher_ajax/', admin_views.add_teacher_ajax),
     path('admin/get_teacher_class_ajax/', admin_views.get_teacher_class_ajax),
+    path('admin/message_center/', public_views.message_center),
 
 
     # 教师页面
@@ -44,10 +45,12 @@ urlpatterns = [
     path("teacher/student_manage/", teacher_views.student_manage),
     path('teacher/add_student_ajax/', teacher_views.add_student_ajax),
     path('teacher/switch_student_class_ajax/', teacher_views.switch_student_class_ajax),
+    path('teacher/message_center/', public_views.message_center),
 
     # 学生页面
     path('student/home/', student_views.home),
     path('student/edit_passwd/', student_views.edit_passwd),
     path('student/cat_class/', student_views.cat_class),
+    path('student/message_center/', public_views.message_center),
 
 ]

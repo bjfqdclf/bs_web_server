@@ -17,3 +17,12 @@ def edit_password(data, user):
     return {'status': 'success', 'message': '密码修改成功'}
 
 
+def get_user_type(user):
+    if user == 1:
+        user_type = 'admin'
+    elif user == 2:
+        user_type = 'teacher'
+    else:
+        user_type = 'student'
+    return user_type
+

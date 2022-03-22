@@ -1,0 +1,69 @@
+{% extends "admin/admin_left_bar.html" %}
+{% block title %}
+    <link rel="stylesheet" href="/static/css/admin_class_manage.css">
+    <link rel="stylesheet" href="/static/css/table_scroll.css">
+    <title>班级管理</title>
+{% endblock title %}
+
+{% block content %}
+
+    <div class="class-info-container">
+        <h1 class="class-title">未读通知</h1>
+        <div class="tablebox">
+
+            <table id="tableId" border="0" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr class="class-info-title">
+                    <th>通知标题</th>
+                    <th>通知时间</th>
+                    <th>通知详情</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for message in not_read_message_list %}
+                    <tr id="{{ message.unique_code }}">
+                        <th>{{ message.title }}</th>
+                        <th>{{ message.gen_time }}</th>
+                        <th>
+                            <a class="not-read-info" style="cursor:pointer;" id="{{ message.unique_code }}">详情</a>
+                        </th>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="class-add-container" id="login-box">
+        <h1 class="class-title">已读通知</h1>
+        <div class="tablebox">
+
+            <table id="tableId" border="0" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr class="class-info-title">
+                    <th>通知标题</th>
+                    <th>通知时间</th>
+                    <th>通知详情</th>
+                </tr>
+                </thead>
+                <tbody id="is-read-tbody">
+                {% for message in is_read_message_list %}
+                    <tr>
+                        <th>{{ message.title }}</th>
+                        <th>{{ message.gen_time }}</th>
+                        <th>
+                            <a style="cursor:pointer;" id="{{ message.unique_code }}">详情</a>
+                        </th>
+                    </tr>
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script type="text/javascript" src="/static/static/jquery-3.6.0.js"></script>
+    <script type="text/javascript" src='/static/js/table_scroll.js'></script>
+    <script type="text/javascript" src='/static/js/message_center.js'></script>
+{% endblock content %}

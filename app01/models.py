@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 import django.utils.timezone as timezone
-
+import datetime, uuid
 
 class ClassInfo(models.Model):
     """班级"""
@@ -40,6 +40,19 @@ class DailyFaceRecord(models.Model):
     temp = models.FloatField(help_text='记录温度')
     time = models.DateTimeField(help_text='记录时间', auto_now=True)
     device_code = models.CharField(max_length=32, help_text='设备编码')
+
+
+# 通知信息表
+class MessageCenter(models.Model):
+    unique_code = models.CharField(default=uuid.uuid4().hex, max_length=256, help_text='用户唯一识别码')
+    user_unique_code = models.CharField(max_length=256, help_text='用户唯一识别码')
+    level = models.IntegerField(default=3, help_text="消息等级")   # 1-短信通知、2-弹窗通知、3-静默通知
+    type = models.IntegerField(default=1, help_text="消息类型")     # 1-系统通知、2-其他通知
+    title = models.CharField(max_length=256, help_text="通知标题")
+    message = models.CharField(max_length=1024, null=True, help_text="通知标题")
+
+    is_read = models.BooleanField(default=False, help_text="是否已读")
+    gen_time = models.DateTimeField(default=datetime.datetime.now(), help_text="创建时间")
 
 # class FaceImg(models.Model):
 #     """

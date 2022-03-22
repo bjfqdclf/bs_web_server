@@ -1,7 +1,8 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import auth, messages
 from django.views.decorators.csrf import csrf_exempt
-from app01.base_interface.general_functions import edit_password
+from app01.base_interface.general_functions import edit_password, get_user_type
+from app01.base_interface.message_center_service import message_service
 import json
 
 
@@ -58,16 +59,42 @@ def edit_passwd_ajax(request):
         return HttpResponse(json.dumps(re_data))
 
 
-def url_404(request):
+def message_center(request):
+    user = request.user
+    user_type = get_user_type(user.user_type)
+    is_read_message_list = message_service.get_message(user.unique_code, True)
+    not_read_message_list = message_service.get_message(user.unique_code, False)
+    data = {
+        'title': '今日新闻',
+        'message': '美国部分地区已开始人口清除计划，MATE公司总裁扎克伯格将担任新一届美国总统，届时将由机器人掌控美国。'
+    }
+    # message_service.add_message(user.unique_code, data)
+    return render(request, f'{user_type}/{user_type}_message_center.html',
+                  {'username': user.username,
+                   'is_read_message_list': is_read_message_list,
+                   'not_read_message_list': not_read_message_list})
 
+
+@csrf_exempt
+def get_message_detail_ajax(request):
+    if request.method == 'POST':
+        message_unique_code = request.POST.dict()['message_unique_code']
+        message_info = message_service.get_a_message(message_unique_code)
+        re_data = {'status': 'success',
+                   'message_info': message_info}
+        return HttpResponse(json.dumps(re_data))
+
+
+@csrf_exempt
+def message_read_ajax(request):
+    """消息已读"""
+    if request.method == 'POST':
+        message_unique_code = request.POST.dict()['message_unique_code']
+        message_service.read_a_message(message_unique_code)
+        re_data = {'status': 'success'}
+        return HttpResponse(json.dumps(re_data))
+
+
+def url_404(request):
     return render(request, 'ok')
 
-
-def test(request):
-    from app01.interface.admin_interface.user_operation import students_code_generate
-    code = students_code_generate(1, 1)
-    return HttpResponse(code) if code else HttpResponse('false')
-
-
-def test2(request):
-    return HttpResponse('test2')

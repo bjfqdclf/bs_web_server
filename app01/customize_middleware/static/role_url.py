@@ -2,7 +2,9 @@ public_url = [
     '/login/',
     '/logout/',
     '/not_find/',
-    '/edit_passwd_ajax/'
+    '/edit_passwd_ajax/',
+    '/get_message_detail_ajax/',
+    '/message_read_ajax/',
 ]
 
 err_url = [
@@ -20,7 +22,7 @@ role_url_dict = {
         '/admin/teacher_manage/',
         '/admin/add_teacher_ajax/',
         '/admin/get_teacher_class_ajax/',
-        '/teacher/switch_student_class_ajax/',
+        '/admin/message_center/'
 
     ],
     2: [  # teacher_url
@@ -29,10 +31,12 @@ role_url_dict = {
         '/teacher/student_manage/',
         '/teacher/add_student_ajax/',
         '/teacher/switch_student_class_ajax/',
+        '/teacher/message_center/'
     ],
     3: [  # student_url
         '/student/home/',
         '/student/edit_passwd/',
         '/student/cat_class/',
+        '/student/message_center/'
     ]
 }
