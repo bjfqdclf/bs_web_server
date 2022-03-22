@@ -37,6 +37,7 @@ role_url_dict = {
         '/student/home/',
         '/student/edit_passwd/',
         '/student/cat_class/',
-        '/student/message_center/'
+        '/student/message_center/',
+        '/student/edit_photo/',
     ]
 }

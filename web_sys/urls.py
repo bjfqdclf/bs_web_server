@@ -52,5 +52,6 @@ urlpatterns = [
     path('student/edit_passwd/', student_views.edit_passwd),
     path('student/cat_class/', student_views.cat_class),
     path('student/message_center/', public_views.message_center),
+    path('student/edit_photo/', student_views.edit_photo_manage),
 
 ]

@@ -17,6 +17,7 @@ class UserInfo(AbstractUser):
     user_type = models.IntegerField(help_text='用户角色类型')  # 1-管理员、2-教师、3-学生
     phone_number = models.CharField(unique=True, max_length=32, null=True)
 
+    can_edit_info = models.BooleanField(default=True, help_text="是否可以修改录入的照片")     # 主要用于学生
     class_unique_code = models.CharField(max_length=256, help_text='班级唯一识别码')
     REQUIRED_FIELDS = ['code', 'user_type']
 
@@ -44,14 +45,23 @@ class DailyFaceRecord(models.Model):
 
 # 通知信息表
 class MessageCenter(models.Model):
-    unique_code = models.CharField(default=uuid.uuid4().hex, max_length=256, help_text='用户唯一识别码')
+    unique_code = models.CharField(default=uuid.uuid4().hex, max_length=256, help_text='唯一识别码')
     user_unique_code = models.CharField(max_length=256, help_text='用户唯一识别码')
     level = models.IntegerField(default=3, help_text="消息等级")   # 1-短信通知、2-弹窗通知、3-静默通知
     type = models.IntegerField(default=1, help_text="消息类型")     # 1-系统通知、2-其他通知
     title = models.CharField(max_length=256, help_text="通知标题")
     message = models.CharField(max_length=1024, null=True, help_text="通知标题")
 
+    is_send_message = models.BooleanField(default=False, help_text="是否已发送短信")
     is_read = models.BooleanField(default=False, help_text="是否已读")
+    gen_time = models.DateTimeField(default=datetime.datetime.now(), help_text="创建时间")
+
+
+class UserPhoto(models.Model):
+    unique_code = models.CharField(default=uuid.uuid4().hex, max_length=256, help_text='唯一识别码')
+    user_unique_code = models.CharField(max_length=256, help_text='用户唯一识别码')
+
+    is_valid = models.BooleanField(default=False, help_text="是否有效")
     gen_time = models.DateTimeField(default=datetime.datetime.now(), help_text="创建时间")
 
 # class FaceImg(models.Model):

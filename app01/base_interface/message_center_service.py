@@ -33,5 +33,15 @@ class MessageService:
     def add_message(self, user_unique_code, data):
         MessageCenter.objects.create(**data)
 
+    def create_new_user_message(self, user_unique_code):
+        data = {
+            'user_unique_code': user_unique_code,
+            'level': 1,
+            'type': 1,
+            'title': '新用户须知',
+            'message': '您的用户已创建，为了您的账户安全，请修改默认密码。点击忽略，以后不再提示。'
+        }
+        MessageCenter.objects.create(**data)
+
 
 message_service = MessageService()

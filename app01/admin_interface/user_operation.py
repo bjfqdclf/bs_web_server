@@ -1,5 +1,6 @@
 from app01.models import *
 from app01.base_interface import code_generate
+from app01.base_interface.message_center_service import message_service
 import datetime, uuid
 
 
@@ -53,6 +54,7 @@ def add_teacher(name, class_list, phone_num=None):
                                          phone_number=phone_num, user_type=2)
     user_query.set_password('1')
     user_query.save()
+    message_service.create_new_user_message(user_query.unique_code)
     for class_unique_code in class_list:
         TeacherToClass.objects.create(class_unique_code=class_unique_code, teacher_unique_code=user_query.unique_code)
     return True
@@ -109,6 +111,7 @@ def add_student(name, class_unique_code, phone_num=None):
                                              phone_number=phone_num, user_type=3)
     user_query.set_password('1')
     user_query.save()
+    message_service.create_new_user_message(user_query.unique_code)
     return True
 
 
