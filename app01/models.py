@@ -57,6 +57,7 @@ class MessageCenter(models.Model):
     gen_time = models.DateTimeField(default=datetime.datetime.now(), help_text="创建时间")
 
 
+# 用户照片
 class UserPhoto(models.Model):
     unique_code = models.CharField(default=uuid.uuid4().hex, max_length=256, help_text='唯一识别码')
     user_unique_code = models.CharField(max_length=256, help_text='用户唯一识别码')
@@ -64,6 +65,13 @@ class UserPhoto(models.Model):
     is_valid = models.BooleanField(default=False, help_text="是否有效")
     gen_time = models.DateTimeField(default=datetime.datetime.now(), help_text="创建时间")
 
+
+# 审批表
+class ApprovalInfo(models.Model):
+    unique_code = models.CharField(default=uuid.uuid4().hex, max_length=256, help_text='唯一识别码')
+    user_unique_code = models.CharField(max_length=256, help_text='被审批用户唯一识别码')
+    is_pass = models.BooleanField(default=False, help_text="是否通过审批")
+    gen_time = models.DateTimeField(default=datetime.datetime.now(), help_text="创建时间")
 # class FaceImg(models.Model):
 #     """
 #     人脸照片

@@ -1,0 +1,25 @@
+.class-info-container {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 50%;
+    height: 40%;
+    text-align: center;
+    display: block;
+    background: #00000070;
+    /*background-color: #063146;*/
+
+    float: left;
+}
+
+.img{
+    padding-top: 50px;
+}
+.card{
+    position: absolute;
+    left: 50%;
+    margin-left: -144px;
+}

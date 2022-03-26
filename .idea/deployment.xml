@@ -75,11 +75,18 @@
       <paths name="ubuntu@101.34.7.41:22 (2)">
         <serverdata>
           <mappings>
-            <mapping deploy="/home/ubuntu/bs/school_sys" local="$PROJECT_DIR$" />
+            <mapping local="$PROJECT_DIR$" web="/" />
           </mappings>
         </serverdata>
       </paths>
       <paths name="ubuntu@101.34.7.41:22 (4)">
+        <serverdata>
+          <mappings>
+            <mapping deploy="/home/ubuntu/bs/school_sys" local="$PROJECT_DIR$" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="ubuntu@101.34.7.41:22 (5)">
         <serverdata>
           <mappings>
             <mapping deploy="/home/ubuntu/bs/school_sys" local="$PROJECT_DIR$" />

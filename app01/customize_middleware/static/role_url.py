@@ -5,6 +5,7 @@ public_url = [
     '/edit_passwd_ajax/',
     '/get_message_detail_ajax/',
     '/message_read_ajax/',
+    '/upload_img_ajax/',
 ]
 
 err_url = [

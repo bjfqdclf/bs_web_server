@@ -1,5 +1,6 @@
 from django.shortcuts import render, HttpResponse, redirect
 from app01.admin_interface.class_interface import student_obtain_class_info, get_class_info
+from app01.base_interface.general_functions import get_picture_img
 
 
 def home(request):
@@ -22,5 +23,8 @@ def cat_class(request):
 
 def edit_photo_manage(request):
     user = request.user
+    img_path, is_valid = get_picture_img(user.unique_code)
     return render(request, 'student/student_edit_photo.html', {'username': user.username,
+                                                               'img_path': img_path,
+                                                               'is_valid': is_valid,
                                                                'can_edit_info': user.can_edit_info})

@@ -25,6 +25,7 @@ urlpatterns = [
     path('edit_passwd_ajax/', public_views.edit_passwd_ajax),
     path('get_message_detail_ajax/', public_views.get_message_detail_ajax),
     path('message_read_ajax/', public_views.message_read_ajax),
+    path('upload_img_ajax/', public_views.upload_img_ajax),
 
 
     # 管理员页面

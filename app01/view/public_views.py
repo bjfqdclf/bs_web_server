@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import auth, messages
 from django.views.decorators.csrf import csrf_exempt
-from app01.base_interface.general_functions import edit_password, get_user_type
+from app01.base_interface.general_functions import edit_password, get_user_type, up_load_img, get_picture_img
 from app01.base_interface.message_center_service import message_service
 import json
 
@@ -93,6 +93,17 @@ def message_read_ajax(request):
         message_service.read_a_message(message_unique_code)
         re_data = {'status': 'success'}
         return HttpResponse(json.dumps(re_data))
+
+
+@csrf_exempt
+def upload_img_ajax(request):
+    """上传图片"""
+    user = request.user
+    if request.method == 'POST':
+        upload_img = request.FILES['image']
+        file_path = up_load_img(upload_img, user)
+        # TODO 发送审批
+        return HttpResponse(json.dumps(file_path))
 
 
 def url_404(request):
