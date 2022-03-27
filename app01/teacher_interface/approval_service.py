@@ -1,5 +1,6 @@
+from django.conf import settings
 from django.forms import model_to_dict
-
+from app01.base_interface.tencent_cloud_service import tencent_cloud_service
 from app01.models import *
 
 
@@ -67,7 +68,18 @@ class ApprovalService:
             if approval_query.approval_type == 1:
                 UserPhoto.objects.filter(user_unique_code=approval_query.user_unique_code, is_valid=False).update(
                     is_valid=True)
-                # TODO 将图片上传至人员库
+                user_query = UserInfo.objects.filter(unique_code=approval_query.user_unique_code).first()
+                person_exist = tencent_cloud_service.check_person_exist(user_query.code)
+                if person_exist:
+                    tencent_cloud_service.delete_face(user_query.code)
+                user_info = {
+                    "PersonName": user_query.username,
+                    "PersonId": user_query.code,
+                }
+                picture_unique_code = UserPhoto.objects.filter(user_unique_code=approval_query.user_unique_code
+                                                               , is_valid=True).first().unique_code
+                img_dir = f'{settings.BASE_DIR}/static/upload_img/{picture_unique_code}.jpg'
+                tencent_cloud_service.add_face(user_info, img_dir)
                 ApprovalInfo.objects.filter(unique_code=approval_unique_code).update(is_pass=True)
                 return '审核已通过'
             if approval_query.approval_type == 2:

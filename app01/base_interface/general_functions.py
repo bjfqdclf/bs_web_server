@@ -3,7 +3,7 @@ from app01.models import *
 from app01.base_interface.code_generate import digit_completion
 import uuid
 from django.conf import settings
-
+from app01.base_interface.tencent_cloud_service import tencent_cloud_service
 
 def edit_password(data, user):
     old_password = data['old_password']
@@ -30,7 +30,9 @@ def get_user_type(user):
 
 
 def up_load_img(img_data, user):
-    UserPhoto.objects.filter(user_unique_code=user.unique_code).delete()    # 删除已存在照片
+    user_photo = UserPhoto.objects.filter(user_unique_code=user.unique_code).delete()    # 删除已存在照片
+    if user_photo:
+        tencent_cloud_service.delete_face(user.unique_code)
     picture_unique_code = uuid.uuid4().hex
     file_path = f'{settings.BASE_DIR}/static/upload_img/{picture_unique_code}.jpg'
     with open(file_path, mode='wb+') as file_obj:

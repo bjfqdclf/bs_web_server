@@ -6,9 +6,10 @@ class SysConfig:
     # 读取配置文件
     conf_exit = False
     conf_name = "web_sys.conf"
-    if os.path.exists(conf_name):  # 在项目根目录下启动时读取conf文件
-        conf_name = conf_name
-        conf_exit = True
+    while not os.path.exists(conf_name):  # 在项目根目录下启动时读取conf文件
+        conf_name = '../' + conf_name
+    conf_name = conf_name
+    conf_exit = True
     if conf_exit:
         try:
             conf = ConfigParser()
@@ -25,6 +26,10 @@ class SysConfig:
             file_level = conf.get("log", "file_level", fallback="DEBUG")
             stream_level = conf.get("log", "stream_level", fallback="DEBUG")
             out_put = conf.get("log", "out_put", fallback=True)
+            # 读取腾讯API_KEY
+            SecretId = conf.get("tx_api", "secret_id")
+            SecretKey = conf.get("tx_api", "secret_key")
+            GroupId = conf.get("tx_api", "group_id")
 
         except KeyError as e:
             pass
