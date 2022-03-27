@@ -44,5 +44,16 @@ class MessageService:
         }
         MessageCenter.objects.create(**data)
 
+    def create_message(self, data):
+        MessageCenter.objects.create(**data)
+
+    def student_send_message(self, user, data):
+        class_unique_code = user.class_unique_code
+        teacher_queries = TeacherToClass.objects.filter(class_unique_code=class_unique_code).all()
+        for teacher_query in teacher_queries:
+            data['user_unique_code'] = teacher_query.teacher_unique_code
+            data['unique_code'] = uuid.uuid4().hex
+            MessageCenter.objects.create(**data)
+
 
 message_service = MessageService()

@@ -1,3 +1,5 @@
+import uuid
+
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import auth, messages
 from django.views.decorators.csrf import csrf_exempt
@@ -102,6 +104,13 @@ def upload_img_ajax(request):
     if request.method == 'POST':
         upload_img = request.FILES['image']
         file_path = up_load_img(upload_img, user)
+        data = {
+            'level': 1,
+            'type': 1,
+            'title': '新的审批',
+            'message': f'照片审批>>>:[{user.username}]-[{user.code}]，请至审批页面进行审批'
+        }
+        message_service.student_send_message(user, data)
         approval_title = f'学生{user.username}照片审批'
         approval_messages = f'照片审批>>>:[{user.username}]-[{user.code}]'
         send_approval_info(user.unique_code, approval_title, approval_messages)

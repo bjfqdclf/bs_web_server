@@ -2,6 +2,7 @@ from django.conf import settings
 from django.forms import model_to_dict
 from app01.base_interface.tencent_cloud_service import tencent_cloud_service
 from app01.models import *
+from app01.base_interface.message_center_service import message_service
 
 
 class ApprovalService:
@@ -81,10 +82,31 @@ class ApprovalService:
                 img_dir = f'{settings.BASE_DIR}/static/upload_img/{picture_unique_code}.jpg'
                 tencent_cloud_service.add_face(user_info, img_dir)
                 ApprovalInfo.objects.filter(unique_code=approval_unique_code).update(is_pass=True)
+
+                # 发送消息
+                data = {
+                    'unique_code': uuid.uuid4().hex,
+                    'user_unique_code': user_query.unique_code,
+                    'level': 2,
+                    'type': 1,
+                    'title': '审核通过',
+                    'message': '您提交的照片已通过审核，可以开始使用。点击忽略，以后不再提示。'
+                }
+                message_service.create_message(data)
                 return '审核已通过'
             if approval_query.approval_type == 2:
                 UserInfo.objects.filter(unique_code=approval_query.user_unique_code).update(can_edit_info=True)
                 ApprovalInfo.objects.filter(unique_code=approval_unique_code).update(is_pass=True)
+                # 发送消息
+                data = {
+                    'unique_code': uuid.uuid4().hex,
+                    'user_unique_code': approval_query.user_unique_code,
+                    'level': 2,
+                    'type': 1,
+                    'title': '审核通过',
+                    'message': '您提交的更换照片申请已审核通过，可在系统中重新上传换照片。点击忽略，以后不再提示。'
+                }
+                message_service.create_message(data)
                 return '审核已通过'
 
 

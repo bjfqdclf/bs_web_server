@@ -3,6 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, HttpResponse, redirect
 from app01.admin_interface.class_interface import student_obtain_class_info, get_class_info
 from app01.base_interface.general_functions import get_picture_img
+from app01.base_interface.message_center_service import message_service
 from app01.student_interface.photo_service import student_photo_service
 
 
@@ -41,5 +42,12 @@ def initiate_approval_ajax(request):
         data = {'status': 'False', 'message': '已存在审批，等待审批通过'}
     else:
         student_photo_service.initiate_photo_approval(user)
+        data = {
+            'level': 1,
+            'type': 1,
+            'title': '新的审批',
+            'message': f'修改照片审批>>>:[{user.username}]-[{user.code}]请求修改照片，请至审批页面进行审批'
+        }
+        message_service.student_send_message(user, data)
         data = {'status': 'success', 'message': '已发起审批，等待审批通过'}
     return HttpResponse(json.dumps(data))
