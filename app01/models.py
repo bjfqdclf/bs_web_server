@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser
 import django.utils.timezone as timezone
 import datetime, uuid
 
+
 class ClassInfo(models.Model):
     """班级"""
     name = models.CharField(max_length=32, help_text='班级名称')
@@ -45,7 +46,7 @@ class DailyFaceRecord(models.Model):
 
 # 通知信息表
 class MessageCenter(models.Model):
-    unique_code = models.CharField(default=uuid.uuid4().hex, max_length=256, help_text='唯一识别码')
+    unique_code = models.CharField(max_length=256, help_text='唯一识别码')
     user_unique_code = models.CharField(max_length=256, help_text='用户唯一识别码')
     level = models.IntegerField(default=3, help_text="消息等级")   # 1-短信通知、2-弹窗通知、3-静默通知
     type = models.IntegerField(default=1, help_text="消息类型")     # 1-系统通知、2-其他通知
@@ -59,7 +60,7 @@ class MessageCenter(models.Model):
 
 # 用户照片
 class UserPhoto(models.Model):
-    unique_code = models.CharField(default=uuid.uuid4().hex, max_length=256, help_text='唯一识别码')
+    unique_code = models.CharField(max_length=256, help_text='唯一识别码')
     user_unique_code = models.CharField(max_length=256, help_text='用户唯一识别码')
 
     is_valid = models.BooleanField(default=False, help_text="是否有效")
@@ -68,10 +69,15 @@ class UserPhoto(models.Model):
 
 # 审批表
 class ApprovalInfo(models.Model):
-    unique_code = models.CharField(default=uuid.uuid4().hex, max_length=256, help_text='唯一识别码')
+    unique_code = models.CharField(max_length=256, help_text='唯一识别码')
     user_unique_code = models.CharField(max_length=256, help_text='被审批用户唯一识别码')
+    title = models.CharField(max_length=256, help_text="审批标题")
+    message = models.CharField(max_length=1024, null=True, help_text="审批信息")
+
+    approval_type = models.IntegerField(default=1, help_text="审批类型")    # 1-照片审批、2-申请开启上传权限
     is_pass = models.BooleanField(default=False, help_text="是否通过审批")
     gen_time = models.DateTimeField(default=datetime.datetime.now(), help_text="创建时间")
+
 # class FaceImg(models.Model):
 #     """
 #     人脸照片

@@ -47,12 +47,15 @@ urlpatterns = [
     path('teacher/add_student_ajax/', teacher_views.add_student_ajax),
     path('teacher/switch_student_class_ajax/', teacher_views.switch_student_class_ajax),
     path('teacher/message_center/', public_views.message_center),
-
+    path('teacher/cat_approval/', teacher_views.cat_approval),
+    path('teacher/get_approval_ajax/', teacher_views.cat_a_approval_ajax),
+    path('teacher/approval_pass_ajax/', teacher_views.pass_approval_ajax),
     # 学生页面
     path('student/home/', student_views.home),
     path('student/edit_passwd/', student_views.edit_passwd),
     path('student/cat_class/', student_views.cat_class),
     path('student/message_center/', public_views.message_center),
     path('student/edit_photo/', student_views.edit_photo_manage),
+    path('student/initiate_approval_ajax/', student_views.initiate_approval_ajax),
 
 ]

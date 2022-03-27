@@ -32,7 +32,10 @@ role_url_dict = {
         '/teacher/student_manage/',
         '/teacher/add_student_ajax/',
         '/teacher/switch_student_class_ajax/',
-        '/teacher/message_center/'
+        '/teacher/message_center/',
+        '/teacher/cat_approval/',
+        '/teacher/get_approval_ajax/',
+        '/teacher/approval_pass_ajax/',
     ],
     3: [  # student_url
         '/student/home/',
@@ -40,5 +43,6 @@ role_url_dict = {
         '/student/cat_class/',
         '/student/message_center/',
         '/student/edit_photo/',
+        '/student/initiate_approval_ajax/'
     ]
 }

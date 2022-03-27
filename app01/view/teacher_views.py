@@ -2,7 +2,7 @@ import json
 
 from django.shortcuts import render, HttpResponse, redirect
 from django.views.decorators.csrf import csrf_exempt
-
+from app01.teacher_interface.approval_service import approval_service
 from app01.admin_interface.user_operation import get_student_info, add_student, switch_student_class
 
 
@@ -39,4 +39,33 @@ def switch_student_class_ajax(request):
         data = request.POST.dict()
         switch_student_class(data['student_unique_code'], data['class_unique_code'])
         data = {'status': 'success'}
+        return HttpResponse(json.dumps(data))
+
+
+def cat_approval(request):
+    user = request.user
+    approval_info = approval_service.get_approval_list(user)
+    return render(request, 'teacher/teacher_cat_approval.html', {'username': user.username,
+                                                                 'approval_info': approval_info})
+
+
+@csrf_exempt
+def cat_a_approval_ajax(request):
+    if request.method == 'POST':
+        approval_unique_code = request.POST.dict()['unique_code']
+        approval_info = approval_service.get_a_approval_info(approval_unique_code)
+        img_path = f'/static/upload_img/{approval_info["img_unique_code"]}.jpg'
+        data = {'status': 'success',
+                'approval_type': approval_info['approval_type'],
+                'approval_info': approval_info,
+                'img_path': img_path}
+        return HttpResponse(json.dumps(data))
+
+
+@csrf_exempt
+def pass_approval_ajax(request):
+    if request.method == 'POST':
+        approval_unique_code = request.POST.dict()['unique_code']
+        message = approval_service.pass_approval(approval_unique_code)
+        data = {'status': 'success', 'message': message}
         return HttpResponse(json.dumps(data))

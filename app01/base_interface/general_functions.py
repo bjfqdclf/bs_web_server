@@ -30,6 +30,7 @@ def get_user_type(user):
 
 
 def up_load_img(img_data, user):
+    UserPhoto.objects.filter(user_unique_code=user.unique_code).delete()    # 删除已存在照片
     picture_unique_code = uuid.uuid4().hex
     file_path = f'{settings.BASE_DIR}/static/upload_img/{picture_unique_code}.jpg'
     with open(file_path, mode='wb+') as file_obj:
@@ -50,3 +51,19 @@ def get_picture_img(user_unique_code):
         is_valid = False
         img_path = 'http://www.sucainiu.com/themes/index/images/headImg/no.png'
     return img_path, is_valid
+
+
+def send_approval_info(user_unique_code, title, messages, approval_type=1):
+    """
+    发起审批
+    :param approval_type: 审批类型，默认为照片审批
+    :param user_unique_code: 被审批人
+    :param title: 审批标题
+    :param messages: 审批信息
+    :return:
+    """
+    unique_code = uuid.uuid4().hex
+    ApprovalInfo.objects.create(unique_code=unique_code,
+                                user_unique_code=user_unique_code,
+                                title=title, message=messages,
+                                approval_type=approval_type)

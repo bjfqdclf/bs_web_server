@@ -1,6 +1,9 @@
+import json
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, HttpResponse, redirect
 from app01.admin_interface.class_interface import student_obtain_class_info, get_class_info
 from app01.base_interface.general_functions import get_picture_img
+from app01.student_interface.photo_service import student_photo_service
 
 
 def home(request):
@@ -28,3 +31,15 @@ def edit_photo_manage(request):
                                                                'img_path': img_path,
                                                                'is_valid': is_valid,
                                                                'can_edit_info': user.can_edit_info})
+
+
+@csrf_exempt
+def initiate_approval_ajax(request):
+    user = request.user
+    can_initiate_approval = student_photo_service.check_can_initiate_approval(user)
+    if not can_initiate_approval:
+        data = {'status': 'False', 'message': '已存在审批，等待审批通过'}
+    else:
+        student_photo_service.initiate_photo_approval(user)
+        data = {'status': 'success', 'message': '已发起审批，等待审批通过'}
+    return HttpResponse(json.dumps(data))

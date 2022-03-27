@@ -35,6 +35,7 @@ class MessageService:
 
     def create_new_user_message(self, user_unique_code):
         data = {
+            'unique_code': uuid.uuid4().hex,
             'user_unique_code': user_unique_code,
             'level': 1,
             'type': 1,

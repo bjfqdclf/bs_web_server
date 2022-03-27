@@ -1,7 +1,7 @@
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import auth, messages
 from django.views.decorators.csrf import csrf_exempt
-from app01.base_interface.general_functions import edit_password, get_user_type, up_load_img, get_picture_img
+from app01.base_interface.general_functions import edit_password, get_user_type, up_load_img, send_approval_info
 from app01.base_interface.message_center_service import message_service
 import json
 
@@ -102,7 +102,9 @@ def upload_img_ajax(request):
     if request.method == 'POST':
         upload_img = request.FILES['image']
         file_path = up_load_img(upload_img, user)
-        # TODO 发送审批
+        approval_title = f'学生{user.username}照片审批'
+        approval_messages = f'照片审批>>>:[{user.username}]-[{user.code}]'
+        send_approval_info(user.unique_code, approval_title, approval_messages)
         return HttpResponse(json.dumps(file_path))
 
 
