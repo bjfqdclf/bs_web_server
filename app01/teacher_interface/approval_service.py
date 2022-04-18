@@ -109,5 +109,31 @@ class ApprovalService:
                 message_service.create_message(data)
                 return '审核已通过'
 
+    def not_pass_approval(self, approval_unique_code):
+        """"审核未通过"""
+        approval_query = ApprovalInfo.objects.filter(unique_code=approval_unique_code).first()
+        if approval_query.approval_type == 1:
+            data = {
+                'unique_code': uuid.uuid4().hex,
+                'user_unique_code': approval_query.user_unique_code,
+                'level': 2,
+                'type': 1,
+                'title': '审核未通过',
+                'message': '您提交的照片已未通过审核，请重新提交照片！'
+            }
+            UserInfo.objects.update(can_edit_info=True).filter(unique_code=approval_query.user_unique_code)
+            message_service.create_message(data)
+        elif approval_query.approval_type == 2:
+            data = {
+                'unique_code': uuid.uuid4().hex,
+                'user_unique_code': approval_query.user_unique_code,
+                'level': 2,
+                'type': 1,
+                'title': '审核未通过',
+                'message': '您提交的更换照片申请未审核通过！'
+            }
+            message_service.create_message(data)
+        ApprovalInfo.objects.filter(unique_code=approval_unique_code).delete()
+        return '审核未通过'
 
 approval_service = ApprovalService()

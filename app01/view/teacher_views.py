@@ -65,7 +65,12 @@ def cat_a_approval_ajax(request):
 @csrf_exempt
 def pass_approval_ajax(request):
     if request.method == 'POST':
+        is_pass = request.POST.dict()['pass']
         approval_unique_code = request.POST.dict()['unique_code']
-        message = approval_service.pass_approval(approval_unique_code)
-        data = {'status': 'success', 'message': message}
+        if is_pass == 'true':
+            message = approval_service.pass_approval(approval_unique_code)
+            data = {'status': 'success', 'message': message}
+        else:
+            message = approval_service.not_pass_approval(approval_unique_code)
+            data = {'status': 'success', 'message': message}
         return HttpResponse(json.dumps(data))
