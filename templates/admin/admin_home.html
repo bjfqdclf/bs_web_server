@@ -1,8 +1,60 @@
 {% extends "admin/admin_left_bar.html" %}
 {% block title %}
+    <link rel="stylesheet" href="/static/css/admin_teacher_manage.css">
+    <link rel="stylesheet" href="/static/css/table_scroll.css">
     <title>管理员主页</title>
 {% endblock title %}
 
 {% block content %}
-    <p>这是管理员</p>
+    <div class="class-info-container">
+        <h1 class="class-title">设备注册信息</h1>
+        <div class="tablebox">
+
+            <table id="tableId" border="0" cellspacing="0" cellpadding="0">
+                <thead>
+                <tr class="class-info-title">
+                    <th>序号</th>
+                    <th>设备码</th>
+                    <th>地址描述</th>
+                    <th>是否启用</th>
+                </tr>
+                </thead>
+                <tbody id="device-list">
+                {% for device in device_list %}
+
+                    <tr>
+                        <th>{{ device.id }}</th>
+                        <th>{{ device.code }}</th>
+                        <th>{{ device.addr }}</th>
+                        <th>{{ device.is_used }}</th>
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="class-add-container" id="login-box">
+        <h1 class="class-title">添加设备</h1>
+        <br>
+        <form class="class-form" action="">
+            {% csrf_token %}
+            <div class="item">
+                <div class="form-floating">
+                    <textarea class="form-control addr" placeholder="Leave a comment here" id="floatingTextarea2"
+                              style="height: 100px; width: 400px; display: inline;"></textarea>
+                    <label for="floatingTextarea2">Comments</label>
+                </div>
+            </div>
+
+            <input type="submit" class="input-btn" id="submit-btn">
+        </form>
+    </div>
+
+
+    <script type="text/javascript" src="/static/static/jquery-3.6.0.js"></script>
+    <script type="text/javascript" src='/static/js/table_scroll.js'></script>
+    <script type="text/javascript" src='/static/js/admin_home.js'></script>
 {% endblock content %}

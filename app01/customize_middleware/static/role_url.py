@@ -23,7 +23,8 @@ role_url_dict = {
         '/admin/teacher_manage/',
         '/admin/add_teacher_ajax/',
         '/admin/get_teacher_class_ajax/',
-        '/admin/message_center/'
+        '/admin/message_center/',
+        '/admin/add_device_ajax/',
 
     ],
     2: [  # teacher_url

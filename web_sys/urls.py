@@ -28,6 +28,7 @@ urlpatterns = [
     path('upload_img_ajax/', public_views.upload_img_ajax),
 
 
+
     # 管理员页面
     path('admin/home/', admin_views.home),
     path('admin/add/user/', admin_views.add_user),
@@ -38,6 +39,7 @@ urlpatterns = [
     path('admin/add_teacher_ajax/', admin_views.add_teacher_ajax),
     path('admin/get_teacher_class_ajax/', admin_views.get_teacher_class_ajax),
     path('admin/message_center/', public_views.message_center),
+    path('admin/add_device_ajax/', admin_views.add_device_ajax),
 
 
     # 教师页面

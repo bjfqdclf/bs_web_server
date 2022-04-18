@@ -23,10 +23,13 @@ def obtain_code(year, code_type):
     """
     code_query = GenerateCode.objects.filter(year=year, code_type=code_type).order_by('code').first()
     if not code_query:
-        GenerateCode.objects.create(year=year, code_type=code_type, code='1')
+        GenerateCode.objects.create(year=year, code_type=code_type, code='2')
         code = 1
     else:
         code = int(code_query.code)
         code_query.code = str(code+1)
         code_query.save()
+
+    if code_type == 4:
+        return digit_completion(code, 5)
     return digit_completion(code, 3)

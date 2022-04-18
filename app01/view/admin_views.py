@@ -5,11 +5,48 @@ import json
 from app01.models import *
 from app01.admin_interface.class_interface import obtain_class_info, add_class
 from app01.admin_interface.user_operation import get_teacher_info, add_teacher
+from app01.base_interface.device_service import device_service
 
 
 def home(request):
     user = request.user
-    return render(request, 'admin/admin_home.html', {'username': user.username})
+    device_info = device_service.get_all_device_info()
+    device_list = []
+    index = 1
+    for code, device in device_info.items():
+        is_used = '是' if device['is_used'] else '否'
+        device_list.append({
+            'id': index,
+            'code': code,
+            'addr': device['address_desc'],
+            'is_used': is_used
+        })
+        index += 1
+    return render(request, 'admin/admin_home.html', {'username': user.username, 'device_list': device_list})
+
+
+@csrf_exempt
+def add_device_ajax(request):
+    if request.method == 'POST':
+        data = request.POST.dict()
+        device_info = {}
+        address_desc = data['address_desc']
+        address_desc = address_desc.strip()
+        if len(address_desc) >= 32:
+            message = '设备地址描述太长！'
+        elif len(address_desc) == 0:
+            message = '描述不可为空'
+        else:
+            message, code = device_service.add_device(address_desc)
+            count = device_service.count_device()
+            device_info['addr'] = address_desc
+            device_info['code'] = code
+            device_info['is_used'] = '是'
+            device_info['id'] = count
+        data = {'status': 'success',
+                'message': message,
+                'device_info': device_info}
+        return HttpResponse(json.dumps(data))
 
 
 def add_user(request):
