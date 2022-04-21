@@ -117,6 +117,15 @@ def upload_img_ajax(request):
         return HttpResponse(json.dumps(file_path))
 
 
+@csrf_exempt
+def message_center_pupups_ajax(request):
+    """消息弹窗通知"""
+    user = request.user
+    if request.method == 'POST':
+        re_data = message_service.get_message_puls(user.unique_code)
+        return HttpResponse(json.dumps(re_data))
+
+
 def url_404(request):
     return render(request, 'ok')
 

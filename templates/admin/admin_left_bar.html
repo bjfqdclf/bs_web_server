@@ -36,5 +36,50 @@
 "><img style="padding-top:2px; width: 15px" src="/static/img/备案.png"><a class="banquan" style="color:#000;"
                                                                         href="http://www.beian.gov.cn/portal/registerSystemInfo?recordcode=2021015036"
                                                                         target="_blank">陕ICP备2021015036号-1</a></p>
+
+<script type="text/javascript" src='/static/static/toastr.min.js'></script>
+<link rel="stylesheet" href="/static/static/toastr.min.css">
+<script>
+    function message_pupus() {
+        $.ajax({
+            type: 'POST',
+            url: '/message_center_pupups_ajax/', //路由加'/'否则会报ssh错误
+            data: {},
+            success: function (data) {
+                data = JSON.parse(data);
+                let message_conunt = data['message_count']
+                let message_list = data['message_list']
+                if (message_conunt === 0) {
+                    return
+                }
+                for (var i = 0; i < message_list.length; i++) {  //遍历数组
+                    let title = message_list[i]['title']
+                    let message = message_list[i]['message']
+                    let time = message_list[i]['time']
+                    toastr.info(`<[${time}][${title}]>   ${message}`);
+                }
+
+                // 发送有几条未读信息
+                toastr.warning(`有${message_conunt}条未读消息，请及时查看！`);
+            },
+        })
+    }
+
+    toastr.options = {
+        "closeButton": true, //是否显示关闭按钮
+        "debug": false, //是否使用debug模式
+        "progressBar": true, //是否显示进度条，当为false时候不显示；当为true时候，显示进度条，当进度条缩短到0时候，消息通知弹窗消失
+        "positionClass": "toast-top-right",//显示的动画时间
+        "showDuration": "400", //显示的动画时间
+        "hideDuration": "1000", //消失的动画时间
+        "timeOut": "7000", //展现时间
+        "extendedTimeOut": "2500", //加长展示时间
+        "showEasing": "swing", //显示时的动画缓冲x方式
+        "hideEasing": "linear", //消失时的动画缓冲方式
+        "showMethod": "fadeIn", //显示时的动画方式
+        "hideMethod": "fadeOut" //消失时的动画方式
+    };
+    message_pupus()
+</script>
 </body>
 </html>

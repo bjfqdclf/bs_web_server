@@ -1,3 +1,4 @@
+from django.db.models import Count
 from django.forms import model_to_dict
 
 from app01.models import *
@@ -15,6 +16,31 @@ class MessageService:
             message_dict['gen_time'] = f'{gen_time.year}-{gen_time.month} {gen_time.hour}:{gen_time.minute}:{gen_time.second}'
             datalist.append(message_dict)
         return datalist
+
+    def get_message_puls(self,  user_unique_code):
+        message_count = MessageCenter.objects.filter(user_unique_code=user_unique_code,
+                                             is_read=False).aggregate(count=Count("id"))['count']
+        message_queries = MessageCenter.objects.filter(user_unique_code=user_unique_code,
+                                                       is_read=False).order_by("gen_time").all()
+        if message_count == 0:
+            return {'message_count': message_count,
+                    'message_list': []}
+        count = 0
+        message_list = []
+        for message_query in message_queries:
+            if count > 3:
+                break
+            gen_time = message_query.gen_time
+            message_list.append({
+                'title': message_query.title,
+                'message': message_query.message,
+                'time': f'{gen_time.year}-{gen_time.month} {gen_time.hour}:{gen_time.minute}:{gen_time.second}'
+            })
+            count += 1
+        return {'message_count': message_count,
+                'message_list': message_list}
+
+
 
     def get_a_message(self, message_unique_code):
         message_query = MessageCenter.objects.filter(unique_code=message_unique_code).first()

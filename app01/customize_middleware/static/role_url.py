@@ -6,6 +6,7 @@ public_url = [
     '/get_message_detail_ajax/',
     '/message_read_ajax/',
     '/upload_img_ajax/',
+    '/message_center_pupups_ajax/'
 ]
 
 err_url = [

@@ -26,6 +26,7 @@ urlpatterns = [
     path('get_message_detail_ajax/', public_views.get_message_detail_ajax),
     path('message_read_ajax/', public_views.message_read_ajax),
     path('upload_img_ajax/', public_views.upload_img_ajax),
+    path('message_center_pupups_ajax/', public_views.message_center_pupups_ajax),
 
 
 
