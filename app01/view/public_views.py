@@ -1,5 +1,5 @@
 import uuid
-
+from app01.base_interface.punch_record_service import punch_record_service
 from django.shortcuts import render, HttpResponse, redirect
 from django.contrib import auth, messages
 from django.views.decorators.csrf import csrf_exempt
@@ -124,6 +124,16 @@ def message_center_pupups_ajax(request):
     if request.method == 'POST':
         re_data = message_service.get_message_puls(user.unique_code)
         return HttpResponse(json.dumps(re_data))
+
+
+def punch_record(user):
+    user_code_list = []
+    if user.user_type == 2:     # 教师
+        punch_record_service.get_teacher_students(user.unique_code, user_code_list)
+    elif user.user_type == 3:   #学生
+        user_code_list.append(user.code)
+    punch_record_list = punch_record_service.get_punch_record(user_code_list)
+    return punch_record_list
 
 
 def url_404(request):

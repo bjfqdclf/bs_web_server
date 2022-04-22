@@ -1,8 +1,8 @@
-{% extends "teacher/teacher_left_bar.html" %}
+{% extends "student/student_left_bar.html" %}
 {% block title %}
     <link rel="stylesheet" href="/static/css/table_scroll.css">
     <link rel="stylesheet" href="/static/css/student_cat_class.css">
-    <title>教师管理主页</title>
+    <title>查看打卡记录</title>
 {% endblock title %}
 
 {% block content %}
@@ -15,9 +15,6 @@
                 <thead>
                 <tr class="class-info-title">
                     <th>时间</th>
-                    <th>班级</th>
-                    <th>姓名</th>
-                    <th>学号</th>
                     <th>体温</th>
                     <th>地点</th>
                 </tr>
@@ -26,9 +23,6 @@
                 {% for punch_record in punch_record_list %}
                     <tr>
                         <th>{{ punch_record.time }}</th>
-                        <th>{{ punch_record.class }}</th>
-                        <th>{{ punch_record.name }}</th>
-                        <th>{{ punch_record.code }}</th>
                         <th>{{ punch_record.temp }}</th>
                         <th>{{ punch_record.address_dec }}</th>
                     </tr>

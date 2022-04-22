@@ -5,6 +5,7 @@ from app01.admin_interface.class_interface import student_obtain_class_info, get
 from app01.base_interface.general_functions import get_picture_img
 from app01.base_interface.message_center_service import message_service
 from app01.student_interface.photo_service import student_photo_service
+from app01.view.public_views import punch_record
 
 
 def home(request):
@@ -51,3 +52,10 @@ def initiate_approval_ajax(request):
         message_service.student_send_message(user, data)
         data = {'status': 'success', 'message': '已发起审批，等待审批通过'}
     return HttpResponse(json.dumps(data))
+
+
+def student_punch_recode(request):
+    user = request.user
+    punch_record_list = punch_record(user)
+    return render(request, 'student/student_punch_record.html',
+                  {'username': user.username, 'punch_record_list': punch_record_list})

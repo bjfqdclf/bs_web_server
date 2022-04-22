@@ -6,7 +6,8 @@ public_url = [
     '/get_message_detail_ajax/',
     '/message_read_ajax/',
     '/upload_img_ajax/',
-    '/message_center_pupups_ajax/'
+    '/message_center_pupups_ajax/',
+    '/punch_record/'
 ]
 
 err_url = [
@@ -45,6 +46,7 @@ role_url_dict = {
         '/student/cat_class/',
         '/student/message_center/',
         '/student/edit_photo/',
-        '/student/initiate_approval_ajax/'
+        '/student/initiate_approval_ajax/',
+        '/student/punch_record/'
     ]
 }

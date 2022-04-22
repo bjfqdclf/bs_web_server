@@ -4,11 +4,13 @@ from django.shortcuts import render, HttpResponse, redirect
 from django.views.decorators.csrf import csrf_exempt
 from app01.teacher_interface.approval_service import approval_service
 from app01.admin_interface.user_operation import get_student_info, add_student, switch_student_class
+from app01.view.public_views import punch_record
 
 
 def home(request):
     user = request.user
-    return render(request, 'teacher/teacher_home.html', {'username': user.username})
+    punch_record_list = punch_record(user)
+    return render(request, 'teacher/teacher_home.html', {'username': user.username, 'punch_record_list' :punch_record_list})
 
 
 def edit_passwd(request):

@@ -27,6 +27,7 @@ urlpatterns = [
     path('message_read_ajax/', public_views.message_read_ajax),
     path('upload_img_ajax/', public_views.upload_img_ajax),
     path('message_center_pupups_ajax/', public_views.message_center_pupups_ajax),
+    path('punch_record/', public_views.punch_record),
 
 
 
@@ -60,5 +61,6 @@ urlpatterns = [
     path('student/message_center/', public_views.message_center),
     path('student/edit_photo/', student_views.edit_photo_manage),
     path('student/initiate_approval_ajax/', student_views.initiate_approval_ajax),
+    path('student/punch_record/', student_views.student_punch_recode),
 
 ]
