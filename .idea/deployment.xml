@@ -30,6 +30,13 @@
           </mappings>
         </serverdata>
       </paths>
+      <paths name="bjfqdclf@192.168.184.128:22 (4)">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
       <paths name="lah@10.2.12.218:22">
         <serverdata>
           <mappings>
@@ -38,6 +45,20 @@
         </serverdata>
       </paths>
       <paths name="lah@10.2.8.172:22">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="lah@192.168.100.112:22">
+        <serverdata>
+          <mappings>
+            <mapping local="$PROJECT_DIR$" web="/" />
+          </mappings>
+        </serverdata>
+      </paths>
+      <paths name="lah@192.168.5.112:22">
         <serverdata>
           <mappings>
             <mapping local="$PROJECT_DIR$" web="/" />
