@@ -11,3 +11,9 @@ file_dir = ../sys.log
 out_put = True
 file_level = INFO
 stream_level = INFO
+
+
+[tx_api]
+secret_id = ... # 腾讯api_id
+secret_key = ...    # 腾讯api_key
+group_id = ...  # 人员库id
