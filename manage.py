@@ -3,7 +3,7 @@
 import os
 import sys
 from django.core.management.commands.runserver import Command as Runserver
-from app01.scheduler_task.tmep_warr import temp_scheduler_service
+# from app01.scheduler_task.tmep_warr import temp_scheduler_service
 
 def main():
     """Run administrative tasks."""
