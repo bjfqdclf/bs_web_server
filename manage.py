@@ -3,7 +3,7 @@
 import os
 import sys
 from django.core.management.commands.runserver import Command as Runserver
-
+from app01.scheduler_task.tmep_warr import temp_scheduler_service
 
 def main():
     """Run administrative tasks."""
@@ -24,4 +24,5 @@ if __name__ == '__main__':
     Runserver.default_port = '3737'  # 修改默认端口
     # Runserver.default_addr = '127.0.0.1'  # 修改默认地址
     # Runserver.default_port = '3737'  # 修改默认端口
+    # temp_scheduler_service.start()
     main()
